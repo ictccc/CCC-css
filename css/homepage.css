@@ -1,0 +1,116 @@
+/*CCC_CSShomepage*/
+html{
+	color: grey;
+	text-align: center;
+	background: url(img/47bec3.png)repeat-x center top,url(img/ffc541.png) repeat-x center,url(img/fc9a76.png) repeat-x center bottom;
+	background-size: 100% 950px, 100% 1000px, 100% 1000px;
+	scroll-behavior: smooth;
+}
+
+#pagetitle{
+	margin-top:-8px;
+	background-color: white;
+	padding: 20px 0px;
+	text-transform: uppercase;
+	font-size: 300%;
+}
+
+/*white block around text*/
+.block{
+	width:400px;
+	border:solid white;
+	background-color: white;
+	margin: auto;
+	padding: 50px 100px;
+	box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.3), 0 6px 25px 0 rgba(0, 0, 0, 0.5);
+	
+}
+.topblock {
+	margin-top: -10px;
+	margin-bottom:30px;
+
+}
+
+.block2{
+	top: 1700px;
+	margin-top: 100px;
+	margin-bottom: 30px;
+
+}
+.block3{
+	top: 2500px;
+	margin-top: 100px;
+	margin-bottom: 250px;
+
+}
+
+
+/*pictures positioning*/
+#purposeI{
+	width: 574px;
+	height: auto;
+}
+#howToI{
+	height: auto;
+	width: 500px;
+	position: absolute;
+	top: 1220px;
+	right: 50px;
+}
+#honnbannI{
+	height:auto;
+	width: 300px;
+}
+
+/*arrow + animation*/
+.arrow{
+	height: 250px;
+	width: 300px;
+	opacity: 70%;
+	position: relative;
+	animation-name: down;
+	animation-duration: 2s;
+	animation-iteration-count: infinite;
+	padding-bottom: 150px;
+}
+
+@keyframes down {
+	0% {top: 0px;}
+	10% {top: 8px;}
+	20%{top:0px;}
+	30%{top: 8px;}
+	40%{ top:0px;}
+	100%{top:0px;}
+}
+
+
+#howToS{
+	top: 1100px;
+	border: solid #ffc541;
+	
+}
+
+
+/*button css*/
+button{
+	border:0;
+	background-color: grey;
+	color: white;
+	padding: 10px 20px;
+	text-align: center;
+	display:inline-block;
+	font-size: 16px;
+	margin: auto;
+	cursor:pointer;
+	transition-duration: 0.4s;
+}
+button.blue:hover {
+	background-color: #47bec3;
+	color: white;
+}
+button.yellow:hover{
+	background-color: #ffc541;
+}
+button.pic{
+	background: none;
+}

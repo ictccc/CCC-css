@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="css/purpose.css">
+        <title>title</title>
+    </head>
+    <body>
+        <div id="header" class="image">
+			<div class="bgP"></div>
+				<a href="#para">
+					<div class="header"><h1>目的</h1></div>
+				</a>
+		</div>
+        <p id="para">
+            不透明だからこそ手を広げる。<br>
+            2020年から猛威を振るっている新型コロナウイルスは未来計画を歪めてしまうほど強力だ。世界経済に与えた影響は大きく、<br><br>
+            国境でさえ簡単に渡ることは許されない。自分の未来がどう影響を受けるのか、いつ決断する必要が出てくるのか、考えずにいれば足元をすくわれる。<br>
+            しかし、たった一つの希望を持ってそれに向かうことはできない。あまりにも不確実なことが多すぎて、明日知り合いが感染しないとも限らないからだ。<br>
+            いったいどうしてそんな賭けが行えるのだろう。<br><br>
+            決断する時が来た時に、一つの未来しか持ち合わせていないのはあまりにも危うい。基本的に何を決断するかは分かっていて、<br>
+            問題なのはその時に周りがどんな環境かが分からないことだ。では、その決断に深く関係する要素だけ取り出して、<br>
+            それらの組み合わせを検討するのはどうだろうか？<br><br>
+            全てを考慮するるのは難しい。しかし、全ての要素は関連していて、関連性が高い物はすぐにわかる。注意深く探せばその中で、<br>
+            「将来がはっきりと分からず」、「影響が大きい」いくつかの要素が見えてくる。<br>
+            それらを見つけたら後は問題ない。私たちはそれを十分に活用できる方法を知っている。未来のあり得るいくつかの可能性について考えよう。<br>
+            そして、それらに備えるために何をすればよいのだろうか。
+        </p>
+    
+        <a href = ./howTo.html>
+            <button type="submit" name="name" value="値">使い方を見る</button>
+			
+			
+        <script>
+			window.onscroll = function() {myFunction()};
+
+			var header = document.getElementById("image");
+			var sticky = 900;
+
+			function myFunction() {
+				if (window.pageYOffset >= sticky) {
+					header.classList.add ("sticky");
+					header.classList.add ("sticky2");
+				} else {
+					header.classList.remove ("sticky");
+					header.classList.remove ("sticky2");
+				}
+			}	
+		</script>
+    </body>
+	
+</html>
