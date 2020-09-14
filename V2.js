@@ -1,10 +1,10 @@
-//canvas情報取得だニャン
+//canvas情報取得だ
 var canvas = document.getElementById("canvas");
-var ctx = canvas.getContext("2d"); //何か描画する際は ctx.　にするにゃん
-var Cwidth = 1800; //初期幅ニャン
-var Cheight = 5000; //初期高さニャン
+var ctx = canvas.getContext("2d"); //何か描画する際は ctx.　にする
+var Cwidth = 1800; //初期幅
+var Cheight = 5000; //初期高さ
 
-//シナリオ図の作成用変数だニャン
+//シナリオ図の作成用変数だ
 var StartAndEndPoint = [[0,650,200,650]]; //[Sx,Sy,Ex,Ey]　線の終始
 var EndPoints = [[200,650,0]]; //list of End of Branch　枝の最後
 var TextAndPlace = [[],[],[]];

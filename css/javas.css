@@ -1,0 +1,69 @@
+/*CCC_JavaS.css*/
+body{
+	color:#666;
+}
+
+#canvas {
+    background: #fc9a76;
+}
+#BranchDialog{
+    width: 600px;
+    height: 600px;
+}
+			
+/*first dialog: want to do*/
+dialog#InitialDialog {
+	border: none;
+	text-align: center;
+	padding: 50px;
+	padding-bottom: 10px;
+}
+
+#instruct{
+	font-size: 150%;
+	color: #666;
+}
+
+#flex{
+	margin-left: 50px;
+	display: flex;
+	align-items: flex-start; 
+}
+
+span{
+	margin-left: 55px;
+}
+	
+
+.input{
+	float: right;
+	margin-left: 40px;
+	margin-right: 20px;
+	border: 1px solid #666;
+}
+.input:hover {
+	border: solid #fc9a76;
+}
+
+
+button{
+	border:0;
+	background-color: grey;
+	color: white;
+	padding: 10px 20px;
+	text-align: center;
+	display:inline-block;
+	font-size: 16px;
+	margin: auto;
+	cursor:pointer;
+	transition-duration: 0.4s;
+}
+button:hover {
+	background-color: #fc9a76;
+	color: white;
+}
+#Iclose{
+	position: absolute;
+	top: 350px;
+	right: 230px;
+}
