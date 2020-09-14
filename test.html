@@ -1,0 +1,70 @@
+<html>
+    <head>
+        <title>NewIdea</title>
+        <!--CSS 一花ここ任せたにゃん-->
+        <style>
+            #canvas {
+                background: #fffffff1;
+            }
+            #BranchDialog{
+                width: 600px;
+                height: 600px;
+            }
+        </style>
+    </head>
+    <body>
+        <!--canvas-->
+        <h1 id = Parpas></h1>
+        <canvas id="canvas"></canvas>
+
+        <!--Branch Dialog page つまり　ここで枝の追加とかさくじょとかするにゃん-->
+        <dialog id = "InitialDialog">
+            <p>やりたいこと、条件を入力してください</p>
+            <form id ="inputs">
+                <textarea id="WantToDo"></textarea>やりたいこと<br>
+                <input type="text" name="if1" id = "if1">条件1<br>
+                <input type="text" name="if2" id = "if2">条件2<br>
+                <input type="text" name="if3" id = "if3">条件3<br>
+            </form>
+            <canvas id ="dialogCanvas"></canvas>
+            <button id="Iclose">作成</button>
+        </dialog>
+        <!--決断内容とやること-->
+        <dialog id = "decisionDialog" >
+            <p>あなたがその時にするであろう決断とその時にやるべきことを入力してください</p>
+            <form id ="inputs">
+                <input type="text" name="decision" id = "decision">決断<br>
+                <input type="text" name="ToDo" id = "ToDo">やるべきこと<br>
+            </form>
+            <button id="Dclose">作成</button>
+        </dialog>
+        <!--テキスト変更-->
+        <dialog id = "EditDialog" >
+            <p>書き直してください</p>
+            <form id ="inputs"onsubmit="return false;">
+                <input type="text" name="decision" id = "edit"><br>
+            </form>
+            <button id="Eclose">作成</button>
+        </dialog>
+        <!--ブランチの追加等0-->
+        <dialog id = "BranchDialog0">
+            <p>なにをしますか？</p>
+            <form id ="RadioBs0">
+                <input type="radio" name="condition" value="branch0" />ブランチの追加
+                <input type="radio" name="condition" value="nothing"/>何もしない
+            </form>
+            <button id="Bclose0">実行</button>
+        </dialog>
+        <!--ブランチの追加等1-->
+        <dialog id = "BranchDialog1">
+            <p>なにをしますか？</p>
+            <form id ="RadioBs1">
+                <input type="radio" name="condition" value="del1"/>ブランチの削除
+                <input type="radio" name="condition" value="nothing"/>何もしない
+            </form>
+            <button id="Bclose1">実行</button>
+        </dialog>
+        <!--lode JavaScript srcに注意-->
+        <script type="text/javascript" src="V2.js" ></script>
+    </body>
+</html>
