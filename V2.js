@@ -7,7 +7,8 @@ var Cheight = 5000; //初期高さ
 //シナリオ図の作成用変数だ
 var StartAndEndPoint = [[0,650,200,650]]; //[Sx,Sy,Ex,Ey]　線の終始
 var EndPoints = [[200,650,0]]; //list of End of Branch　枝の最後
-var TextAndPlace = [[],[],[]];
+
+var TextAndPlace = [[[],[],[],[],[]],[[],[],[],[],[]],[[],[],[],[],[]]];
 var EditBranchB = [];
 var addedLine = [[],[]];
 var DiagonalLength = 320; //次の枝と枝の幅の初期値だニャン 200x2
@@ -58,15 +59,16 @@ function AddBranch(BranchNum,text){
     DChange = DiagonalLength/(Math.pow(2,BranchCount-1)-1);
     var addPoints = [[X,Y,X+100,Y-DChange],[X+100,Y-DChange,X+LineLength,Y-DChange],[X,Y,X+100,Y+DChange],[X+100,Y+DChange,X+LineLength,Y+DChange]];
     var addEnds = [[addPoints[1][2],addPoints[1][3],0],[addPoints[3][2],addPoints[3][3],0]]; // Each End Points
-    var addTPlace= [[X,Y,text]];
     if(BranchNum == 0){
         var addButton = [[X+100,Y-DChange,0],[X+100,Y+DChange,0]];
     }else{
         var addButton = [[X+100,Y-DChange,1],[X+100,Y+DChange,1]];
     }
     StartAndEndPoint = StartAndEndPoint.concat(addPoints);
+
+    
     EndPoints = EndPoints.concat(addEnds);
-    TextAndPlace[BranchNum] = TextAndPlace[BranchNum].concat(addTPlace);
+    TextAndPlace[BranchNum][0] = [X,Y,text]
     console.log(TextAndPlace)
     EditBranchB = EditBranchB.concat(addButton);
     EndPoints[BranchNum][2] = 1;
@@ -202,11 +204,19 @@ function DDialogClose(){
     var addTPlace = [[X+30,Y-100,decision],[X+60,Y-100,ToDo]];
     var initial = [StartAndEndPoint[EdittingBranch*2-1][0],StartAndEndPoint[EdittingBranch*2-1][1]];
     pearents = TwoDindex(EndPoints,initial);
-    TextAndPlace[pearents] = TextAndPlace[pearents].concat(addTPlace);
+    if(EdittingBranch%2 == 0){
+        TextAndPlace[pearents][3] = addTPlace[0];
+        TextAndPlace[pearents][4] = addTPlace[1];
+    }else{
+        TextAndPlace[pearents][1] = addTPlace[0];
+        TextAndPlace[pearents][2] = addTPlace[1];
+    }
+    
     EndPoints[EdittingBranch][2] = 1;
     ReWrite();
     Ddialog.close();
     EdittingBranch = 0;
+    console.log("FBB",TextAndPlace)
 }
 
 //赤ボタンを押したときのダイアログの結果
@@ -330,4 +340,3 @@ function TwoDindex(List,Elments){
 }
 ChangeCanvasSize();
 Idialog.showModal(); 
-//qwer
