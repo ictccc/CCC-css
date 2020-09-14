@@ -7,6 +7,7 @@ var Cheight = 5000; //初期高さニャン
 //シナリオ図の作成用変数だニャン
 var StartAndEndPoint = [[0,650,200,650]]; //[Sx,Sy,Ex,Ey]　線の終始
 var EndPoints = [[200,650,0]]; //list of End of Branch　枝の最後
+
 var TextAndPlace = [[[],[],[],[],[]],[[],[],[],[],[]],[[],[],[],[],[]]];
 var EditBranchB = [];
 var addedLine = [[],[]];
@@ -64,6 +65,8 @@ function AddBranch(BranchNum,text){
         var addButton = [[X+100,Y-DChange,1],[X+100,Y+DChange,1]];
     }
     StartAndEndPoint = StartAndEndPoint.concat(addPoints);
+
+    
     EndPoints = EndPoints.concat(addEnds);
     TextAndPlace[BranchNum][0] = [X,Y,text]
     console.log(TextAndPlace)
