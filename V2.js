@@ -1,8 +1,8 @@
 //canvas情報取得だニャン
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d"); //何か描画する際は ctx.　にするにゃん
-var Cwidth = 1800; //初期幅ニャン
-var Cheight = 5000; //初期高さニャン
+var Cwidth = 1800; //初期幅ニャン *
+var Cheight = 5000; //初期高さニャン *
 
 //シナリオ図の作成用変数だニャン
 var StartAndEndPoint = [[0,650,200,650]]; //[Sx,Sy,Ex,Ey]　線の終始
@@ -259,7 +259,7 @@ function BDialogClose1(){
 
 
 
-//描画用-----------------------------------------------
+//描画用----------------------------------------------- ichika
 //
 function ReWrite(){
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -269,6 +269,8 @@ function ReWrite(){
 }
 //
 function FirstDrow(){
+    ctx.lineWidth = 2;//*
+    // http://www.htmq.com/canvas/
     for(let i = 0;i<StartAndEndPoint.length;i++){
         ctx.beginPath();
         ctx.moveTo(StartAndEndPoint[i][1],StartAndEndPoint[i][0]);//start
@@ -307,7 +309,7 @@ function DrowBox(){
 }
 //
 function WriteText(){
-    ctx.fillStyle = "blue";
+    ctx.fillStyle = "blue"; //*
     ctx.font = "20px 'ＭＳ ゴシック'";
     ctx.textAlign = "center";
     ctx.textBaseline = "top";
