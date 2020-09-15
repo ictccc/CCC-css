@@ -121,7 +121,7 @@ function onClick(e) {
     var rect = e.target.getBoundingClientRect();
     var x = e.clientX - rect.left;
     var y = e.clientY - rect.top;
-    var acceptLength = 7;
+    var acceptLength = 12;
     for(let i = 0;i<EndPoints.length;i++){
         let PointX = EndPoints[i][1];
         let PointY = EndPoints[i][0];
@@ -238,7 +238,7 @@ function BDialogClose0(){
         console.log("Bfore",TextAndPlace)
         TextAndPlace[EdittingBranch].splice(1,2)
         console.log("After",TextAndPlace)
-        AddBranch(EdittingBranch+1);
+        AddBranch(EdittingBranch+1,"入力してください");
     }
     EdittingBranch = 0;
     Bdialog0.close();
@@ -288,19 +288,19 @@ function DrowBox(){
     for(let i = 0;i < EndPoints.length;i++){
         if(EndPoints[i][2] == 0){
             ctx.fillStyle = "rgb(0, 0, 255)"
-            ctx.fillRect(EndPoints[i][1]-5,EndPoints[i][0],10,10)
+            ctx.fillRect(EndPoints[i][1]-7,EndPoints[i][0],14,14)
         }
     }
     for(let i = 0;i<EditBranchB.length;i++){
         ctx.fillStyle = "rgb(0, 255, 0)"
-        ctx.fillRect(EditBranchB[i][1]-5,EditBranchB[i][0]-5,10,10)
+        ctx.fillRect(EditBranchB[i][1]-7,EditBranchB[i][0]-5,14,14)
     }
 
     for(let i = 0;i < TextAndPlace.length;i++){
         for(let j = 0;j<TextAndPlace[i].length;j++){
             ctx.fillStyle = "rgb(255, 0, 0)"
             console.log("Box",TextAndPlace[i][j])
-            ctx.fillRect(TextAndPlace[i][j][1]-5,TextAndPlace[i][j][0]-5,10,10)
+            ctx.fillRect(TextAndPlace[i][j][1]-7,TextAndPlace[i][j][0]-5,14,14)
             
         }        
     }
@@ -313,10 +313,24 @@ function WriteText(){
     ctx.textBaseline = "top";
     for(let i = 0;i<TextAndPlace.length;i++){
         console.log("1",TextAndPlace[i].length)
+        var changeLine = 0;
         for(let j = 0;j<TextAndPlace[i].length;j++){
             let TextNum = i;
-            console.log(TextAndPlace[i][j])
-            ctx.fillText(TextNum+TextAndPlace[i][j][2],TextAndPlace[i][j][1]+100,TextAndPlace[i][j][0]-10,200);   
+            
+            if(TextAndPlace[i][j].length){
+                console.log(TextAndPlace[i][j])
+                if(j == 1|| j == 3){
+                    changeLine = 0;
+                }
+                for(let k = 0;k<=(Math.floor(TextAndPlace[i][j][2].length/10));k++){
+                    console.log("CL",changeLine)
+                    var text = TextAndPlace[i][j][2].substr(k*10,10);
+                    ctx.fillText(TextNum+text,TextAndPlace[i][j][1]+100,TextAndPlace[i][j][0]-30+15*k+15*changeLine,200);
+                    changeLine += 1;
+                }
+                
+            }
+             
         }     
     }
     
