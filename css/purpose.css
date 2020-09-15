@@ -1,0 +1,88 @@
+/*CCC_CSSpurpose page*/
+
+html{
+	text-align: center;
+	scroll-behavior: smooth;
+}
+
+h1 {
+	color: white;
+	font-size: 500%;
+}
+
+/*header + background*/
+.image{
+	background: rgb(0,0,0);
+	background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(255,255,255,0) 50%, rgba(0,0,0,1) 100%);
+	position: -webkit-sticky;
+	position: sticky;
+	top: -600px;
+	text-align: center;
+	background-repeat: no-repeat;
+	height: 800px;
+	width: 100%;
+	transition: 0.5s;
+	text-decoration: none;
+}
+.bgP{
+	background: #47bec3;
+	position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+	transition: 0.5s;
+	opacity: 90%;
+	text-decoration: none;
+}
+
+.header{
+	position: -webkit-sticky;
+	position: sticky;
+	top: 350px;
+	margin:auto;
+	text-decoration: none;
+	transition: 0.5s;
+}
+
+
+h1:hover, h1:focus {
+  color: teal;
+  transition: 0.5s;
+}
+
+#para{
+	width: 500px;
+	margin:auto;
+	margin-top: 100px;
+}
+
+/*button in page*/
+button{
+	border:0;
+	background-color: grey;
+	color: white;
+	padding: 10px 20px;
+	text-align: center;
+	display:inline-block;
+	font-size: 16px;
+	margin: auto;
+	cursor:pointer;
+	transition-duration: 0.4s;
+}
+button:hover {
+	background-color: #47bec3;
+	color: white;
+}
+
+/*sticky thing*/
+.sticky {
+  position: fixed;
+  top: -600px;
+}
+
+.sticky2{
+	position: fixed;
+	top:100px;
+}
+
