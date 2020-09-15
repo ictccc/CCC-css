@@ -1,15 +1,28 @@
+
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
-        <link rel="stylesheet" type="text/css" href="sample.css">
+        <link rel="stylesheet" type="text/css" href="css/howto2.css">
         <title>title</title>
     </head>
     <body>
-        
-        <h1>How to use</h1>
-       
-        <p>
+		
+		<div class="image" id="howto">
+			<div class="bgP" id="howto">
+				<a href="#myPopup">
+					<h1 class="header">How to use</h1>
+				</a>
+			</div>
+				<!--<div class="showup showup-content">
+					<ul>
+					<li class="popup" onclick="showHowto()">How To</li>
+					<li class="popup" onclick="showExample()">Example</li>
+					</ul>
+				</div>-->
+		</div>
+		
+		<p>
             1.	準備をする<br>
             作業をする前に、今後あなたがどのような条件下で何を決断することになるかを考える。<br>
             条件は３つまでに絞り込むことで、簡潔かつ見返しやすい図を作成することができる。
@@ -38,10 +51,45 @@
         </p>
         <img src="CCCimage5.png" title="" style="padding-right:400px" height="200px" width="300px" align="right">
         <img src="CCCimage6.png" title="" style="padding-right:400px" height="200px" width="300px" align="right">
-
+		
+		<div class="image" id="example">
+			<div class="bgP" id="example">
+				<a href="#myPopup2">
+					<h1 class="header">Example</h1>
+				</a>
+			</div>
+		</div>
+		
 
         <a href = ./honban.html>
-            <button type="submit" name="name" value="値">ボタン</button>
-            
+            <button type="submit" name="name" value="値">始まる</button>
+			
+			
+           
+		<script>
+			window.onscroll = function() {myFunction()};
+
+			var header = document.getElementById("howto");
+			var sticky = 700;
+
+			function myFunction() {
+				if (window.pageYOffset >= sticky) {
+					header.classList.add ("sticky");
+					header.classList.add ("sticky2");
+				} else {
+					header.classList.remove ("sticky");
+					header.classList.remove ("sticky2");
+				}
+			}	
+			/*When the user clicks on div, open the popup
+			function showHowto() {
+				var popup = document.getElementById("myPopup");１
+				popup.classList.toggle("show");
+				
+			}
+			function showExample() {
+				var popup2 = document.getElementById("myPopup2");
+				popup2.classList.toggle("show");*/
+		</script> 
     </body>
 </html>
