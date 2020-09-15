@@ -1,0 +1,104 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="css/howto2.css">
+        <title>title</title>
+    </head>
+    <body>
+		
+		<div class="image" id="howto">
+			<div class="bgP" id="howto">
+				<a href="#myPopup">
+					<h1 class="header">How to use</h1>
+				</a>
+			</div>
+				<!--<div class="showup showup-content">
+					<ul>
+					<li class="popup" onclick="showHowto()">How To</li>
+					<li class="popup" onclick="showExample()">Example</li>
+					</ul>
+				</div>-->
+		</div>
+		
+		<p>
+            1.	準備をする<br>
+            作業をする前に、今後あなたがどのような条件下で何を決断することになるかを考える。<br>
+            条件は３つまでに絞り込むことで、簡潔かつ見返しやすい図を作成することができる。
+		</p>    
+
+		<img src="CCCimage1.png" title="" style="padding-right:400px" height="350px" width="300px" align="right">
+		
+        <p>
+            2.	やりたいことと条件を書く<br>
+            ここに書いた文章をもとに枝分かれした図を表示する。画面配置は図Ｎを見てください
+		</p>
+		
+		<h4>枝分かれした図には三色のボタンがある。色ごとに説明していきたいと思う。</h4>
+
+		<img src="CCCimage1.png" title="" style="padding-right:400px" height="350px" width="300px" align="right">
+	
+        <p>
+            3.	青色のボタンを押す<br>
+            やるべきことと決断することを書く。
+        </p>
+        
+        <p>
+            4.	赤色のボタンを押す<br>
+            文章を編集することができる。
+
+        <p>
+            5.	緑色のボタンを押す<br>
+            ブランチの追加、何もしないを選ぶことができる。
+        </p>
+		
+		<div class="image" id="example">
+			<div class="bgP" id="example">
+				<a href="#myPopup2">
+					<h1 class="header">Example</h1>
+				</a>
+			</div>
+		</div>
+        <p class="popuptext" id="myPopup2">   決断する時が来た時に、一つの未来しか持ち合わせていないのはあまりにも危うい。基本的に何を決断するかは分かっていて、<br>
+            問題なのはその時に周りがどんな環境かが分からないことだ。では、その決断に深く関係する要素だけ取り出して、<br>
+            それらの組み合わせを検討するのはどうだろうか？<br>
+            全てを考慮するるのは難しい。しかし、全ての要素は関連していて、関連性が高い物はすぐにわかる。注意深く探せばその中で、<br>
+            「将来がはっきりと分からず」、「影響が大きい」いくつかの要素が見えてくる。<br>
+            それらを見つけたら後は問題ない。私たちはそれを十分に活用できる方法を知っている。未来のあり得るいくつかの可能性について考えよう。<br>
+            そして、それらに備えるために何をすればよいのだろうか。
+        </p>
+		
+
+        <a href = ./honban.html>
+            <button type="submit" name="name" value="値">始まる</button>
+			
+			
+           
+		<script>
+			window.onscroll = function() {myFunction()};
+
+			var header = document.getElementById("howto");
+			var sticky = 700;
+
+			function myFunction() {
+				if (window.pageYOffset >= sticky) {
+					header.classList.add ("sticky");
+					header.classList.add ("sticky2");
+				} else {
+					header.classList.remove ("sticky");
+					header.classList.remove ("sticky2");
+				}
+			}	
+			/*When the user clicks on div, open the popup
+			function showHowto() {
+				var popup = document.getElementById("myPopup");１
+				popup.classList.toggle("show");
+				
+			}
+			function showExample() {
+				var popup2 = document.getElementById("myPopup2");
+				popup2.classList.toggle("show");*/
+		</script> 
+    </body>
+</html>
