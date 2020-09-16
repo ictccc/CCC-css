@@ -14,7 +14,7 @@
     </head>
     <body>
         <!--canvas-->
-        <h1 id = Parpas></h1>
+        <h1 id = Parpas></h1><input type="button" value="EditTitle" onclick="EditTitle()"/>
         <canvas id="canvas"></canvas>
 
         <!--Branch Dialog page つまり　ここで枝の追加とかさくじょとかするにゃん-->
@@ -32,7 +32,7 @@
         <!--決断内容とやること-->
         <dialog id = "decisionDialog" >
             <p>あなたがその時にするであろう決断とその時にやるべきことを入力してください</p>
-            <form id ="inputs">
+            <form name = "yarubekikoto" id ="inputs">
                 <input type="text" name="decision" id = "decision">決断<br>
                 <input type="text" name="ToDo" id = "ToDo">やるべきこと<br>
             </form>
@@ -41,15 +41,33 @@
         <!--テキスト変更-->
         <dialog id = "EditDialog" >
             <p>書き直してください</p>
-            <form id ="inputs"onsubmit="return false;">
+            <form name = "edit" id ="inputs"onsubmit="return false;">
                 <input type="text" name="decision" id = "edit"><br>
             </form>
             <button id="Eclose">作成</button>
         </dialog>
+        <!--たいとる変更-->
+        <dialog id = "TditDialog" >
+            <p>書き直してください</p>
+            <form name = "Tedit" id ="inputs"onsubmit="return false;">
+                <input type="text" name="decision" id = "editT"><br>
+            </form>
+            <button id="Tclose">作成</button>
+        </dialog>
+        <!--For You Should do it-->
+        <dialog id = "FditDialog" >
+            <p id = "YouShouldDoit"></p>
+            <p>やりたいことを追加してください</p>
+            <form name = "YouShouldDoit" id ="inputs"onsubmit="return false;">
+                <input type="text" name="decision" id = "should"><br>
+            </form>
+            <button id="hensyu">編集</button>
+            <button id="Fclose">作成</button>
+        </dialog>
         <!--ブランチの追加等0-->
         <dialog id = "BranchDialog0">
             <p>なにをしますか？</p>
-            <form id ="RadioBs0">
+            <form name = "B0" id ="RadioBs0">
                 <input type="radio" name="condition" value="branch0" />ブランチの追加
                 <input type="radio" name="condition" value="nothing"/>何もしない
             </form>
@@ -58,7 +76,7 @@
         <!--ブランチの追加等1-->
         <dialog id = "BranchDialog1">
             <p>なにをしますか？</p>
-            <form id ="RadioBs1">
+            <form name = "B1" id ="RadioBs1">
                 <input type="radio" name="condition" value="del1"/>ブランチの削除
                 <input type="radio" name="condition" value="nothing"/>何もしない
             </form>
