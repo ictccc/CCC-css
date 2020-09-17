@@ -7,8 +7,9 @@ var Cheight = 5000; //初期高さニャン *
 //シナリオ図の作成用変数だニャン
 var StartAndEndPoint = [[0,650,200,650]]; //[Sx,Sy,Ex,Ey]　線の終始
 var EndPoints = [[200,650,0]]; //list of End of Branch　枝の最後
-
-var TextAndPlace = [[[],[],[],[],[]],[[],[],[],[],[]],[[],[],[],[],[]]];
+var YouShouldDoit = [[30,700,"今からやるべきこと"],[50,700,"入力してください"]]
+var NowTaskCount = 0;
+var TextAndPlace = [[[],[],[],[],[]],[[],[],[],[],[]],[[],[],[],[],[]]];//ブランチにかんけいするテキスト用リスト
 var EditBranchB = [];
 var addedLine = [[],[]];
 var DiagonalLength = 320; //次の枝と枝の幅の初期値だニャン 200x2
@@ -35,6 +36,16 @@ EditButton.addEventListener('click',DDialogClose,false);
 var Edialog = document.getElementById('EditDialog');
 var EditButton = document.getElementById('Eclose');
 EditButton.addEventListener('click',EDialogClose,false);
+//タイトル編集
+var Tdialog = document.getElementById('TditDialog');
+var TditButton = document.getElementById('Tclose');
+TditButton.addEventListener('click',TDialogClose,false);
+//やるべきこと編集用
+var Fdialog = document.getElementById('FditDialog');
+var FditButton = document.getElementById('Fclose');
+FditButton.addEventListener('click',FDialogClose,false);
+var FditButton = document.getElementById('hensyu');
+FditButton.addEventListener('click',FEdit,false);
 
 //ブランチの追加と削除0
 var Bdialog0 = document.getElementById('BranchDialog0');
@@ -51,7 +62,6 @@ EditButton.addEventListener('click',BDialogClose1,false);
 function AddBranch(BranchNum,text){
     var X = EndPoints[BranchNum][0];
     var Y = EndPoints[BranchNum][1];
-    console.log(BranchNum,X,Y + "X Y")
     var BranchCount = 0;
     while(Math.pow(2,BranchCount)-1<=(EndPoints.length)){
         BranchCount += 1;
@@ -66,10 +76,9 @@ function AddBranch(BranchNum,text){
     }
     StartAndEndPoint = StartAndEndPoint.concat(addPoints);
 
-
+    
     EndPoints = EndPoints.concat(addEnds);
     TextAndPlace[BranchNum][0] = [X,Y,text]
-    console.log(TextAndPlace)
     EditBranchB = EditBranchB.concat(addButton);
     EndPoints[BranchNum][2] = 1;
     if(BranchNum>0){
@@ -97,13 +106,9 @@ function DelBranch(EdittingBranch){
     EndPoints.splice(OtherEnd,1);
     delB = TwoDindex(EndPoints,initial);
     TextAndPlace[delB] = [];
-    console.log("EB " + EditBranchB);
     initial[0] = initial[0] - LineLength+100;
-    console.log(initial)
     var EB = TwoDindex(EditBranchB,initial);
-    console.log("d"+EB,EditBranchB[EB])
     EditBranchB[EB][2] = 0;
-    console.log("EndDeled ",EndPoints)
     Addline(delB);
     ReWrite();
 }
@@ -112,7 +117,6 @@ function Addline(Bnum){
     addedLine[Bnum] = [EndPoints[Bnum][0],EndPoints[Bnum][1],EndPoints[Bnum][0]+LineLength,EndPoints[Bnum][1]];
     EndPoints[Bnum][0] = EndPoints[Bnum][0]+LineLength;
     EndPoints[Bnum][2] = 0;
-    console.log("EndAddLineD ",EndPoints)
 }
 
 //クリックによって発生するイベントと関数--------------
@@ -147,8 +151,8 @@ function onClick(e) {
                     EdittingBranch = i;
                     Bdialog1.showModal();
                 }
-
-
+                
+                
             }
         }
     }
@@ -164,7 +168,14 @@ function onClick(e) {
                 }
             }
         }
-
+        
+    }
+    let PointX = YouShouldDoit[1][1];
+    let PointY = YouShouldDoit[1][0];
+    if(PointX-acceptLength < x && x < PointX+acceptLength){
+        if(PointY-acceptLength < y && y < PointY+acceptLength){// width and height +- 5 is ok
+            Fdialog.showModal(); 
+        }
     }
 }
 
@@ -211,12 +222,11 @@ function DDialogClose(){
         TextAndPlace[pearents][1] = addTPlace[0];
         TextAndPlace[pearents][2] = addTPlace[1];
     }
-
+    
     EndPoints[EdittingBranch][2] = 1;
     ReWrite();
     Ddialog.close();
     EdittingBranch = 0;
-    console.log("FBB",TextAndPlace)
 }
 
 //赤ボタンを押したときのダイアログの結果
@@ -227,6 +237,26 @@ function EDialogClose(){
     Edialog.close();
     EdittingText = 0;
 }
+//
+function FEdit(){
+    var YouShouldDoit = document.getElementById("YouShouldDoit");
+    var EditText = document.getElementById("should").value;
+    YouShouldDoit.innerHTML +=  "<p id = " + NowTaskCount + ">" +"<input type=button value=X onclick=DELList("+NowTaskCount + "); />" + EditText + "</p>";
+    console.log(EditText)
+    NowTaskCount += 1;
+    document.YouShouldDoit.reset();
+}
+
+function DELList(N){
+    console.log(N)
+    const T = document.getElementById(N);
+    console.log()
+    T.remove();
+}
+function FDialogClose(){
+    Fdialog.close();
+    EdittingText = 0;
+}
 //緑ボタン0を押したときのダイアログの結果
 function BDialogClose0(){
     var RadioB = document.getElementById( "RadioBs0" ) ;
@@ -234,10 +264,8 @@ function BDialogClose0(){
     var RValue = RadioCondition.value ;
     if(RValue == "branch0"){
         EndPoints[EdittingBranch+1][0] = EndPoints[EdittingBranch+1][0]-200;
-        addedLine[EdittingBranch+1] = []
-        console.log("Bfore",TextAndPlace)
-        TextAndPlace[EdittingBranch].splice(1,2)
-        console.log("After",TextAndPlace)
+        addedLine[EdittingBranch+1] = [];
+        TextAndPlace[EdittingBranch].splice(1,2);
         AddBranch(EdittingBranch+1,"入力してください");
     }
     EdittingBranch = 0;
@@ -249,10 +277,9 @@ function BDialogClose1(){
     var RadioCondition = RadioB.condition ;
     var RValue = RadioCondition.value ;
     if(RValue == "del1"){
-        console.log("EndDeled ",EndPoints)
         DelBranch(EdittingBranch+1)
     }
-
+    
     EdittingBranch = 0;
     Bdialog1.close();
 }
@@ -266,11 +293,11 @@ function ReWrite(){
     FirstDrow();
     DrowBox();
     WriteText();
+    ClearTextBox();
 }
 //
 function FirstDrow(){
-    ctx.strokeStyle = "#fc9a76";
-	ctx.lineWidth = 5;//*
+    ctx.lineWidth = 2;//*
     // http://www.htmq.com/canvas/
     for(let i = 0;i<StartAndEndPoint.length;i++){
         ctx.beginPath();
@@ -301,45 +328,62 @@ function DrowBox(){
 
     for(let i = 0;i < TextAndPlace.length;i++){
         for(let j = 0;j<TextAndPlace[i].length;j++){
-            ctx.fillStyle = "rgb(255, 0, 0)"
-            console.log("Box",TextAndPlace[i][j])
+            ctx.fillStyle = "rgb(255, 0, 0)";
             ctx.fillRect(TextAndPlace[i][j][1]-7,TextAndPlace[i][j][0]-5,14,14)
-
+            
         }        
     }
+    ctx.fillRect(YouShouldDoit[1][1]-7,YouShouldDoit[1][0]+3,14,14)
 }
 //
 function WriteText(){
-    ctx.fillStyle = "#222"; //*font
-    ctx.font = "20px 'Century Gothic'";
+    ctx.fillStyle = "blue"; //*
+    ctx.font = "20px 'ＭＳ ゴシック'";
     ctx.textAlign = "center";
     ctx.textBaseline = "top";
     for(let i = 0;i<TextAndPlace.length;i++){
-        console.log("1",TextAndPlace[i].length)
         var changeLine = 0;
         for(let j = 0;j<TextAndPlace[i].length;j++){
             let TextNum = i;
-
+            console.log(TextAndPlace[i][j])
             if(TextAndPlace[i][j].length){
-                console.log(TextAndPlace[i][j])
                 if(j == 1|| j == 3){
                     changeLine = 0;
                 }
                 for(let k = 0;k<=(Math.floor(TextAndPlace[i][j][2].length/10));k++){
-                    console.log("CL",changeLine)
                     var text = TextAndPlace[i][j][2].substr(k*10,10);
+                    console.log(TextAndPlace[i][j])
                     ctx.fillText(TextNum+text,TextAndPlace[i][j][1]+100,TextAndPlace[i][j][0]-30+15*k+15*changeLine,200);
                     changeLine += 1;
                 }
-
+                
             }
-
+             
         }     
     }
-
+    for(let i = 0; i < YouShouldDoit.length;i++){
+        ctx.fillText(YouShouldDoit[i][2],YouShouldDoit[i][1]+120,YouShouldDoit[i][0],300)
+    }
+    
+}
+function ClearTextBox(){
+    document.yarubekikoto.reset();
+    document.edit.reset();
+    document.B0.reset();
+    document.B1.reset();
 }
 //
 
+function EditTitle(){
+    Tdialog.showModal();
+}
+
+function TDialogClose(){
+    var EditText = document.getElementById("editT").value;
+    Parpas.innerHTML = EditText;
+    Tdialog.close();
+    document.Tedit.reset();
+}
 //
 //
 function ChangeCanvasSize(){
