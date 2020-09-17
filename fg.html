@@ -1,0 +1,53 @@
+<html>
+    <head>
+        <title>NewIdea</title>
+		<link rel="stylesheet" type="text/css" href="css/javas.css">
+    </head>
+    <body>
+        <!--canvas-->
+        <h1 id="Parpas"></h1>
+        <canvas id="canvas"></canvas>
+
+        <!--Branch Dialog page つまり　ここで枝の追加とかさくじょとかするにゃん-->
+        <dialog id = "InitialDialog">
+            <p id="instruct"><strong>やりたいこと、条件を入力してください</strong></p>
+            <form id ="inputs">
+                <p id="flex">やりたいこと:<span></span><textarea  class="input"id="WantToDo"></textarea></p>
+                <p>条件1<input type="text" name="if1" id = "if1" class="input"></p>
+                <p>条件2<input type="text" name="if2" id = "if2" class="input"></p>
+                <p>条件3<input type="text" name="if3" id = "if3" class="input"></p>
+            </form>
+            <canvas id ="dialogCanvas"></canvas>
+            <button id="Iclose">作成</button>
+        </dialog>
+        <!--決断内容とやること-->
+        <dialog id = "decisionDialog" >
+            <p>あなたがその時にするであろう決断とその時にやるべきことを入力してください</p>
+            <form id ="inputs">
+                <p>決断<input type="text" name="decision" id = "decision"></p><br>
+                <p>やるべきこと<input type="text" name="ToDo" id = "ToDo"></p><br>
+            </form>
+            <button id="Dclose">作成</button>
+        </dialog>
+        <!--テキスト変更-->
+        <dialog id = "EditDialog" >
+            <p>書き直してください</p>
+            <form id ="inputs"onsubmit="return false;">
+                <input type="text" name="decision" id = "edit"><br>
+            </form>
+            <button id="Eclose">作成</button>
+        </dialog>
+        <!--ブランチの追加等-->
+        <dialog id = "BranchDialog">
+            <p>なにをしますか？</p>
+            <form id ="RadioBs">
+                <input type="radio" name="condition" value="branch" />ブランチの追加
+                <input type="radio" name="condition" value="del"/>ブランチの削除
+                <input type="radio" name="condition" value="nothing"/>何もしない
+            </form>
+            <button id="Bclose">実行</button>
+        </dialog>
+        <!--lode JavaScript srcに注意-->
+        <script type="text/javascript" src="js/V2.js" ></script>
+    </body>
+</html>
