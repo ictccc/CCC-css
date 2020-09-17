@@ -6,19 +6,23 @@ html{
 
 /*header + background*/
 .image{
-	background: url(img/HOW-TO.png) no-repeat center;
+	background: white;
     width: 100%;
     height: 800px;
 	transition: 0.5s;
 	text-decoration: none;
 }
 .image#howto {
+	position: -webkit-sticky;
 	position: sticky;
 	top:-600px;
+	text-decoration: none;
 }
 .image#example {
+	position: -webkit-sticky;
 	position: sticky;
 	top: -600px;
+	text-decoration: none;
 }
 
 .bgP{
@@ -81,4 +85,52 @@ p {
 	margin: auto;
 }
 
+/*circle around text and line*/
+.circle {
+	border: solid #ffc541;
+	width: 300px;
+	height: 300px;
+	border-radius: 50%;
+	font-size: 18px;
+	color: #222;
+	background: #ffc541;
+	vertical-align: middle;
+	display: table-cell;
+	padding: 20px;
+	position: relative;
+	left: 230px;
+	z-index: -1;
+}
+
+
+.midtext {
+	border: solid #ffc541;
+	border-radius: 50px;
+	color: #222;
+	text-align: center;
+	background: #ffc541;
+	text-align: center;
+	padding: 20px;
+	width: 100px;
+	margin-left: 325px;
+}
+h1.midtext{
+	margin-left: 300px;
+	width: 150px;
+}
+
+.imgHow{
+	padding-right: 300px;
+	float: right;
+}
+
+.line {
+	border-left: 15px solid #ffc541;
+	height: 4500px;
+	display: block;
+	position: absolute;
+	top: 900px;
+	left: 400px;
+	z-index: -1;
+}
 
