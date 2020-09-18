@@ -1,10 +1,10 @@
-//canvas情報取得だ
+//canvas情報取得だニャン
 var canvas = document.getElementById("canvas");
-var ctx = canvas.getContext("2d"); //何か描画する際は ctx.　にする
-var Cwidth = 1800; //初期幅
-var Cheight = 5000; //初期高さ
+var ctx = canvas.getContext("2d"); //何か描画する際は ctx.　にするにゃん
+var Cwidth = 1800; //初期幅ニャン *
+var Cheight = 5000; //初期高さニャン *
 
-//シナリオ図の作成用変数だ
+//シナリオ図の作成用変数だニャン
 var StartAndEndPoint = [[0,650,200,650]]; //[Sx,Sy,Ex,Ey]　線の終始
 var EndPoints = [[200,650,0]]; //list of End of Branch　枝の最後
 
@@ -66,7 +66,7 @@ function AddBranch(BranchNum,text){
     }
     StartAndEndPoint = StartAndEndPoint.concat(addPoints);
 
-    
+
     EndPoints = EndPoints.concat(addEnds);
     TextAndPlace[BranchNum][0] = [X,Y,text]
     console.log(TextAndPlace)
@@ -121,7 +121,7 @@ function onClick(e) {
     var rect = e.target.getBoundingClientRect();
     var x = e.clientX - rect.left;
     var y = e.clientY - rect.top;
-    var acceptLength = 7;
+    var acceptLength = 12;
     for(let i = 0;i<EndPoints.length;i++){
         let PointX = EndPoints[i][1];
         let PointY = EndPoints[i][0];
@@ -147,8 +147,8 @@ function onClick(e) {
                     EdittingBranch = i;
                     Bdialog1.showModal();
                 }
-                
-                
+
+
             }
         }
     }
@@ -164,7 +164,7 @@ function onClick(e) {
                 }
             }
         }
-        
+
     }
 }
 
@@ -211,7 +211,7 @@ function DDialogClose(){
         TextAndPlace[pearents][1] = addTPlace[0];
         TextAndPlace[pearents][2] = addTPlace[1];
     }
-    
+
     EndPoints[EdittingBranch][2] = 1;
     ReWrite();
     Ddialog.close();
@@ -238,7 +238,7 @@ function BDialogClose0(){
         console.log("Bfore",TextAndPlace)
         TextAndPlace[EdittingBranch].splice(1,2)
         console.log("After",TextAndPlace)
-        AddBranch(EdittingBranch+1);
+        AddBranch(EdittingBranch+1,"入力してください");
     }
     EdittingBranch = 0;
     Bdialog0.close();
@@ -252,14 +252,14 @@ function BDialogClose1(){
         console.log("EndDeled ",EndPoints)
         DelBranch(EdittingBranch+1)
     }
-    
+
     EdittingBranch = 0;
     Bdialog1.close();
 }
 
 
 
-//描画用-----------------------------------------------
+//描画用----------------------------------------------- ichika
 //
 function ReWrite(){
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -269,6 +269,9 @@ function ReWrite(){
 }
 //
 function FirstDrow(){
+    ctx.strokeStyle = "#fc9a76";
+	ctx.lineWidth = 5;//*
+    // http://www.htmq.com/canvas/
     for(let i = 0;i<StartAndEndPoint.length;i++){
         ctx.beginPath();
         ctx.moveTo(StartAndEndPoint[i][1],StartAndEndPoint[i][0]);//start
@@ -288,38 +291,52 @@ function DrowBox(){
     for(let i = 0;i < EndPoints.length;i++){
         if(EndPoints[i][2] == 0){
             ctx.fillStyle = "rgb(0, 0, 255)"
-            ctx.fillRect(EndPoints[i][1]-5,EndPoints[i][0],10,10)
+            ctx.fillRect(EndPoints[i][1]-7,EndPoints[i][0],14,14)
         }
     }
     for(let i = 0;i<EditBranchB.length;i++){
         ctx.fillStyle = "rgb(0, 255, 0)"
-        ctx.fillRect(EditBranchB[i][1]-5,EditBranchB[i][0]-5,10,10)
+        ctx.fillRect(EditBranchB[i][1]-7,EditBranchB[i][0]-5,14,14)
     }
 
     for(let i = 0;i < TextAndPlace.length;i++){
         for(let j = 0;j<TextAndPlace[i].length;j++){
             ctx.fillStyle = "rgb(255, 0, 0)"
             console.log("Box",TextAndPlace[i][j])
-            ctx.fillRect(TextAndPlace[i][j][1]-5,TextAndPlace[i][j][0]-5,10,10)
-            
+            ctx.fillRect(TextAndPlace[i][j][1]-7,TextAndPlace[i][j][0]-5,14,14)
+
         }        
     }
 }
 //
 function WriteText(){
-    ctx.fillStyle = "blue";
-    ctx.font = "20px 'ＭＳ ゴシック'";
+    ctx.fillStyle = "#222"; //*font
+    ctx.font = "20px 'Century Gothic'";
     ctx.textAlign = "center";
     ctx.textBaseline = "top";
     for(let i = 0;i<TextAndPlace.length;i++){
         console.log("1",TextAndPlace[i].length)
+        var changeLine = 0;
         for(let j = 0;j<TextAndPlace[i].length;j++){
             let TextNum = i;
-            console.log(TextAndPlace[i][j])
-            ctx.fillText(TextNum+TextAndPlace[i][j][2],TextAndPlace[i][j][1]+100,TextAndPlace[i][j][0]-10,200);   
+
+            if(TextAndPlace[i][j].length){
+                console.log(TextAndPlace[i][j])
+                if(j == 1|| j == 3){
+                    changeLine = 0;
+                }
+                for(let k = 0;k<=(Math.floor(TextAndPlace[i][j][2].length/10));k++){
+                    console.log("CL",changeLine)
+                    var text = TextAndPlace[i][j][2].substr(k*10,10);
+                    ctx.fillText(TextNum+text,TextAndPlace[i][j][1]+100,TextAndPlace[i][j][0]-30+15*k+15*changeLine,200);
+                    changeLine += 1;
+                }
+
+            }
+
         }     
     }
-    
+
 }
 //
 
