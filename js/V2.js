@@ -244,10 +244,10 @@ function tsuika(){
         EndPoints[EdittingBranch][5].push(ToDo);
     }
     for(let i = 0;i <EndPoints[EdittingBranch][4].length;i++){
-        ketsudan.innerHTML +=  "<p id = " + "KTD" +EdittingBranch+ i + ">" +"<input type=button value=X onclick=DELList("+"KTD"+EdittingBranch+i + "); />" + EndPoints[EdittingBranch][4][i] + "</p>";
+        ketsudan.innerHTML +=  "<p id = " + "KTD" +EdittingBranch+ i + ">" +"<input type=button value=X onclick=DELListbyB("+"KTD"+EdittingBranch+i + ","+EdittingBranch+","+i+",4); />" + EndPoints[EdittingBranch][4][i] + "</p>";
     }
     for(let i = 0;i <EndPoints[EdittingBranch][5].length;i++){
-        yarubekikoto.innerHTML +=  "<p id = " + "YBK" + EdittingBranch+i + ">" +"<input type=button value=X onclick=DELList("+"YBK"+EdittingBranch+i + "); />" + EndPoints[EdittingBranch][5][i] + "</p>";
+        yarubekikoto.innerHTML +=  "<p id = " + "YBK" + EdittingBranch+i + ">" +"<input type=button value=X onclick=DELListbyB("+"YBK"+EdittingBranch+i + ","+EdittingBranch+","+i+",5); />" + EndPoints[EdittingBranch][5][i] + "</p>";
     }
     document.yarubekikotoF.reset();
 }
@@ -279,7 +279,7 @@ function EDialogClose(){
 function FEdit(){
     var YouShouldDoit = document.getElementById("YouShouldDoit");
     var EditText = document.getElementById("should").value;
-    YouShouldDoit.innerHTML +=  "<p id = " + "YSD" + NowTaskCount + ">" +"<input type=button value=X onclick=DELList(YSD"+NowTaskCount + "); />" + EditText + "</p>";
+    YouShouldDoit.innerHTML +=  "<p id = " + "YSD" + NowTaskCount + ">" +"<input type=button value=X onclick=DELListbyB(YSD"+NowTaskCount + "); />" + EditText + "</p>";
     NowTaskCount += 1;
     document.YouShouldDoit.reset();
 }
@@ -290,6 +290,12 @@ function DELList(N){
     T.remove();
 }
 
+function DELListbyB(N,e,i,t){
+    console.log(N,"N")
+    EndPoints[e][t].splice(i,1)
+    T = document.getElementById(N)
+    N.remove();
+}
 function FDialogClose(){
     Fdialog.close();
     EdittingText = 0;
@@ -323,7 +329,8 @@ function BDialogClose1(){
 
 
 function ResetD(){
-    
+    var ketsudan = document.getElementById("ketsudan")
+    var yarubekikoto = document.getElementById("yarukoto")
     for(let i = 0;i <EndPoints[EdittingBranch][4].length;i++){
         ketsudan.innerHTML +=  "<p id = " + "KTD" +EdittingBranch+ i + ">" +"<input type=button value=X onclick=DELList("+"KTD"+EdittingBranch+i + "); />" + EndPoints[EdittingBranch][4][i] + "</p>";
     }
@@ -412,6 +419,11 @@ function WriteText(){
     }
     for(let i = 0; i < YouShouldDoit.length;i++){
         ctx.fillText(YouShouldDoit[i][2],YouShouldDoit[i][1]+120,YouShouldDoit[i][0],300)
+    }
+    for(let i = 0;i < EndPoints.length;i++){
+        if(EndPoints[2]){
+            ctx.fillText(EndPoints[i][3],EndPoints[i][1],EndPoints[i][0]+20,100)
+        }
     }
     
 }
