@@ -14,7 +14,7 @@
     </head>
     <body>
         <!--canvas-->
-        <h1 id = Parpas></h1><input type="button" value="EditTitle" onclick="EditTitle()"/>
+        <h1 id = Parpas>やりたいこと</h1><input type="button" value="EditTitle" onclick="EditTitle()"/>
         <canvas id="canvas"></canvas>
 
         <!--Branch Dialog page つまり　ここで枝の追加とかさくじょとかするにゃん-->
@@ -22,27 +22,39 @@
             <p>やりたいこと、条件を入力してください</p>
             <form id ="inputs">
                 <textarea id="WantToDo"></textarea>やりたいこと<br>
-                <input type="text" name="if1" id = "if1">条件1<br>
+                <input type="text" name="if1" id = "if1" >条件1<br>
+                <input tyep="text" name="if10" id = "if10">パターン１<br>
+                <input tyep="text" name="if11" id = "if11">パターン２<br>
                 <input type="text" name="if2" id = "if2">条件2<br>
+                <input tyep="text" name="if20" id = "if20">パターン１<br>
+                <input tyep="text" name="if21" id = "if21">パターン２<br>
                 <input type="text" name="if3" id = "if3">条件3<br>
+                <input tyep="text" name="if30" id = "if30">パターン1<br>
+                <input tyep="text" name="if31" id = "if31">パターン2<br>
             </form>
             <canvas id ="dialogCanvas"></canvas>
             <button id="Iclose">作成</button>
         </dialog>
         <!--決断内容とやること-->
         <dialog id = "decisionDialog" >
+            <p id = "ketsudan">決断<br></p>
+            <p id = "yarukoto">やるべきこと<br></p>
             <p>あなたがその時にするであろう決断とその時にやるべきことを入力してください</p>
-            <form name = "yarubekikoto" id ="inputs">
+            <form name = "yarubekikotoF" id ="inputs">
+                <input type="text" name="title" id = "title">タイトル<br>
                 <input type="text" name="decision" id = "decision">決断<br>
                 <input type="text" name="ToDo" id = "ToDo">やるべきこと<br>
             </form>
+            <button id ="tsuika">追加</button>
             <button id="Dclose">作成</button>
         </dialog>
         <!--テキスト変更-->
         <dialog id = "EditDialog" >
             <p>書き直してください</p>
             <form name = "edit" id ="inputs"onsubmit="return false;">
-                <input type="text" name="decision" id = "edit"><br>
+                <input type="text" name="decision" id = "edit0">条件<br>
+                <input type="text" name="decision" id = "edit1">パターン１<br>
+                <input type="text" name="decision" id = "edit2">パターン２<br>
             </form>
             <button id="Eclose">作成</button>
         </dialog>
