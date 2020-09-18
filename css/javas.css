@@ -1,0 +1,144 @@
+/*CCC_JavaS.css*/
+body{
+	font-family: 'Noto Sans JP', sans-serif;
+	color:#666;
+}
+#parpas{
+	text-align: center;
+	color: #666;
+	border: 10px double #fc9a76;
+	padding: 20px;
+	margin: auto;
+	width: 500px;
+	
+}
+
+#canvas {
+	font-family: 'Noto Sans JP', sans-serif;
+	background: #cccccc;
+}
+dialog{
+    width: 450px;
+    height: 450px;
+	border: none;
+	text-align: center;
+	padding: 0px 50px;
+	box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.3), 0 6px 25px 0 rgba(0, 0, 0, 0.5);
+}
+#dialogCanvas{
+	height: 110px;
+}
+
+button{
+	border:none;
+	background-color: #fc9a76;
+	color: white;
+	padding: 20px;
+	width: 100%;
+	text-align: center;
+	display:inline-block;
+	font-size: 21px;
+	margin: auto;
+	cursor:pointer;
+	transition-duration: 0.4s;
+}
+button:hover {
+	background-color: #fb6b37;
+	color: white;
+}
+/*first dialog: want to do*/
+.instruct{
+	padding: 20px 0px;
+	font-size: 150%;
+	color: #fc9a76;
+}
+
+#flex{
+	display: flex;
+	align-items: flex-start; 
+}
+
+#WantToDo {
+	width: 300px;
+	height: 50px;
+	float: right;
+	margin-left:15px;
+}
+span{
+	width: 15px;
+}
+
+.input{
+	height: 30px;
+	width: 300px;
+	float: right;
+	margin-right: 20px;
+	border: 1px solid #666;
+}
+.input:hover {
+	border: solid #fc9a76;
+}
+
+
+
+#Iclose{
+	border: none;
+	position: absolute;
+	top: 380px;
+	right: 0px;
+}
+
+/*what u should do dialog writing*/
+#decisionDialog{
+	height: 365px;
+}
+#Dclose{
+	width: 100%;
+	position: absolute;
+	top: 300px;
+	right: 0px;
+}
+
+/*dialog: ask for add or delete branch*/
+#BranchDialog0, #BranchDialog1{
+	height: 300px;
+}
+#Bclose0, #Bclose1{
+	width: 100%;
+	position: absolute;
+	top: 230px;
+	right: 0px;
+}
+/*radio type select choice: add/delete branch*/
+.same{
+	display: block;
+	text-align: left;
+	margin-left: 10%;
+	position: relative;
+	cursor: pointer;
+	line-height: 10px;
+	font-size: 17px;
+}
+.spc{
+	margin: 15px;
+}
+label{
+	display: block;
+	border: #fc9a76;
+}
+/*write again dialog*/
+#EditDialog{
+	height: 260px;
+}
+#Eclose{
+	width: 100%;
+	position: absolute;
+	top: 190px;
+	right: 0px;
+}
+#edit{
+	float: none;
+	margin: auto;
+}
+
+  

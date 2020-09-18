@@ -1,6 +1,7 @@
 /*CCC_CSSpurpose page*/
 
 html{
+	font-family: 'Noto Sans JP', sans-serif;
 	text-align: center;
 	scroll-behavior: smooth;
 }
@@ -12,8 +13,7 @@ h1 {
 
 /*header + background*/
 .image{
-	background: rgb(0,0,0);
-	background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(255,255,255,0) 50%, rgba(0,0,0,1) 100%);
+	background: whtie;
 	position: -webkit-sticky;
 	position: sticky;
 	top: -600px;
@@ -32,7 +32,6 @@ h1 {
     width: 100%;
     height: 100%;
 	transition: 0.5s;
-	opacity: 90%;
 	text-decoration: none;
 }
 

@@ -79,7 +79,7 @@ function AddBranch(BranchNum,IF,P0,P1){
     }
     StartAndEndPoint = StartAndEndPoint.concat(addPoints);
 
-    
+
     EndPoints = EndPoints.concat(addEnds);
     TextAndPlace[BranchNum][0] = [X,Y,IF];
     TextAndPlace[BranchNum][2] = [X+50,Y-(DChange/2)-20,P0];
@@ -157,8 +157,8 @@ function onClick(e) {
                     EdittingBranch = i;
                     Bdialog1.showModal();
                 }
-                
-                
+
+
             }
         }
     }
@@ -175,9 +175,13 @@ function onClick(e) {
                 }
             }
         }
+<<<<<<< HEAD
+
+=======
             
         //}
         
+>>>>>>> 6cb0fee0bfffcf6f1818aeb53923b486da9443ed
     }
     let PointX = YouShouldDoit[1][1];
     let PointY = YouShouldDoit[1][0];
@@ -258,6 +262,11 @@ function DDialogClose(){
     for(let i = 0;i <EndPoints[EdittingBranch][5].length;i++){
         DELList("YBK" + EdittingBranch+i);
     }
+<<<<<<< HEAD
+
+    EndPoints[EdittingBranch][2] = 1;
+=======
+>>>>>>> 6cb0fee0bfffcf6f1818aeb53923b486da9443ed
     ReWrite();
     Ddialog.close();
     EdittingBranch = 0;
@@ -301,9 +310,17 @@ function BDialogClose0(){
     var RValue = RadioCondition.value ;
     if(RValue == "branch0"){
         EndPoints[EdittingBranch+1][0] = EndPoints[EdittingBranch+1][0]-200;
+<<<<<<< HEAD
+        addedLine[EdittingBranch+1] = []
+        console.log("Bfore",TextAndPlace)
+        TextAndPlace[EdittingBranch].splice(1,2)
+        console.log("After",TextAndPlace)
+        AddBranch(EdittingBranch+1,"入力してください");
+=======
         addedLine[EdittingBranch+1] = [];
         //TextAndPlace[EdittingBranch].splice(1,2);
         AddBranch(EdittingBranch+1,"入力してください","パターン１","パターン２");
+>>>>>>> 6cb0fee0bfffcf6f1818aeb53923b486da9443ed
     }
     EdittingBranch = 0;
     Bdialog0.close();
@@ -316,12 +333,15 @@ function BDialogClose1(){
     if(RValue == "del1"){
         DelBranch(EdittingBranch+1)
     }
-    
+
     EdittingBranch = 0;
     Bdialog1.close();
 }
 
 
+<<<<<<< HEAD
+
+=======
 function ResetD(){
     
     for(let i = 0;i <EndPoints[EdittingBranch][4].length;i++){
@@ -331,6 +351,7 @@ function ResetD(){
         yarubekikoto.innerHTML +=  "<p id = " + "YBK" + EdittingBranch+i + ">" +"<input type=button value=X onclick=DELList("+"YBK"+EdittingBranch+i + "); />" + EndPoints[EdittingBranch][5][i] + "</p>";
     }
 }
+>>>>>>> 6cb0fee0bfffcf6f1818aeb53923b486da9443ed
 //描画用----------------------------------------------- ichika
 //
 function ReWrite(){
@@ -342,7 +363,12 @@ function ReWrite(){
 }
 //
 function FirstDrow(){
+<<<<<<< HEAD
+    ctx.strokeStyle = "#fc9a76";
+	ctx.lineWidth = 5;//*
+=======
     ctx.lineWidth = 2;//*
+>>>>>>> 6cb0fee0bfffcf6f1818aeb53923b486da9443ed
     // http://www.htmq.com/canvas/
     for(let i = 0;i<StartAndEndPoint.length;i++){
         ctx.beginPath();
@@ -372,6 +398,14 @@ function DrowBox(){
     }
 
     for(let i = 0;i < TextAndPlace.length;i++){
+<<<<<<< HEAD
+        for(let j = 0;j<TextAndPlace[i].length;j++){
+            ctx.fillStyle = "rgb(255, 0, 0)"
+            console.log("Box",TextAndPlace[i][j])
+            ctx.fillRect(TextAndPlace[i][j][1]-7,TextAndPlace[i][j][0]-5,14,14)
+
+        }        
+=======
         //for(let j = 0;j<TextAndPlace[i].length;j++){
             if(TextAndPlace[i][0]){
                 ctx.fillStyle = "rgb(255, 0, 0)";
@@ -381,11 +415,41 @@ function DrowBox(){
             
             
         //}        
+>>>>>>> 6cb0fee0bfffcf6f1818aeb53923b486da9443ed
     }
     ctx.fillRect(YouShouldDoit[1][1]-7,YouShouldDoit[1][0]+3,14,14)
 }
 //
 function WriteText(){
+<<<<<<< HEAD
+    ctx.fillStyle = "#222"; //*font
+    ctx.font = "20px 'Century Gothic'";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "top";
+    for(let i = 0;i<TextAndPlace.length;i++){
+        console.log("1",TextAndPlace[i].length)
+        var changeLine = 0;
+        for(let j = 0;j<TextAndPlace[i].length;j++){
+            let TextNum = i;
+
+            if(TextAndPlace[i][j].length){
+                console.log(TextAndPlace[i][j])
+                if(j == 1|| j == 3){
+                    changeLine = 0;
+                }
+                for(let k = 0;k<=(Math.floor(TextAndPlace[i][j][2].length/10));k++){
+                    console.log("CL",changeLine)
+                    var text = TextAndPlace[i][j][2].substr(k*10,10);
+                    ctx.fillText(TextNum+text,TextAndPlace[i][j][1]+100,TextAndPlace[i][j][0]-30+15*k+15*changeLine,200);
+                    changeLine += 1;
+                }
+
+            }
+
+        }     
+    }
+
+=======
     ctx.fillStyle = "blue"; //*
     ctx.font = "20px 'ＭＳ ゴシック'";
     ctx.textAlign = "center";
@@ -414,6 +478,7 @@ function WriteText(){
         ctx.fillText(YouShouldDoit[i][2],YouShouldDoit[i][1]+120,YouShouldDoit[i][0],300)
     }
     
+>>>>>>> 6cb0fee0bfffcf6f1818aeb53923b486da9443ed
 }
 function ClearTextBox(){
     document.yarubekikotoF.reset();

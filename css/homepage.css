@@ -1,5 +1,6 @@
 /*CCC_CSShomepage*/
 html{
+	font-family: 'Noto Sans JP', sans-serif;
 	color: grey;
 	text-align: center;
 	background: url(img/47bec3.png)repeat-x center top,url(img/ffc541.png) repeat-x center,url(img/fc9a76.png) repeat-x center bottom;
@@ -54,8 +55,8 @@ html{
 	height: auto;
 	width: 500px;
 	position: absolute;
-	top: 1220px;
-	right: 50px;
+	top: 1330px;
+	right: 45px;
 }
 #honnbannI{
 	height:auto;
