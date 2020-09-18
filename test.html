@@ -7,7 +7,17 @@
         <!--canvas-->
         <h1 id = Parpas>やりたいこと</h1><input type="button" value="EditTitle" onclick="EditTitle()"/>
         <canvas id="canvas"></canvas>
+        <input type="button" value="Emergency" onclick="Emergency()"/>
 
+        <!--緊急事態-->
+        <dialog id = "BranchDialog0">
+            <p>右左どっち？</p>
+            <form id ="Ebutton">
+                <input type="radio" name="condition" value="R" />右
+                <input type="radio" name="condition" value="L"/>左
+            </form>
+            <button id="EmergencyGo">実行</button>
+        </dialog>
         <!--Branch Dialog page つまり　ここで枝の追加とかさくじょとかするにゃん-->
         <dialog id = "InitialDialog">
             <p class="instruct"><strong>やりたいこと、条件を入力してください</strong></p>
