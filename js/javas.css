@@ -1,33 +1,35 @@
 /*CCC_JavaS.css*/
 body{
 	font-family: 'Noto Sans JP', sans-serif;
-	color:#666;
+	color:#fc9a76;
 }
-#parpas{
-	text-align: center;
-	color: #666;
-	border: 10px double #fc9a76;
-	padding: 20px;
-	margin: auto;
-	width: 500px;
-	
-}
+
 
 #canvas {
 	font-family: 'Noto Sans JP', sans-serif;
-	background: #cccccc;
+	background: #f2f2f2;
+	width: 1000px;
+	height: 800px;
+}
+#copy {
+	width: 1000px;
+	height: 800px;
+	float: right;
+	position: absolute;
+	top: 100px;
+	left: 1000px;
 }
 dialog{
-    width: 450px;
-    height: 450px;
+    width: 350px;
+    height: 350px;
 	border: none;
-	text-align: center;
 	padding: 0px 50px;
 	box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.3), 0 6px 25px 0 rgba(0, 0, 0, 0.5);
 }
 #dialogCanvas{
 	height: 110px;
 }
+
 
 button{
 	border:none;
@@ -46,99 +48,289 @@ button:hover {
 	background-color: #fb6b37;
 	color: white;
 }
-/*first dialog: want to do*/
+
+/*--------title + edittitle part------*/
+#parpas{
+	text-align: center;
+	color: #666;
+	padding: 0;
+	margin: 0;
+}
+#borderTitle {
+	border: 10px double #fc9a76;
+	padding: 20px;
+	margin: auto;
+	width: 500px;
+}
+
+#EditTitle {
+	background: #fc9a76;
+	border: none;
+	color: white;
+	border-radius: 50%;
+	width: 35px;
+	float: right;
+	cursor: pointer;
+}
+
+
+/*-------------first dialog: want to do------------*/
+#InitialDialog {
+	width: 650px;
+	height: 550px;
+}
 .instruct{
 	padding: 20px 0px;
 	font-size: 150%;
 	color: #fc9a76;
 }
 
-#flex{
+.flex{
 	display: flex;
-	align-items: flex-start; 
+	flex-direction: row; 
 }
 
+/*やりたいことのパート*/
 #WantToDo {
-	width: 300px;
-	height: 50px;
-	float: right;
-	margin-left:15px;
+	width: 570px;
+	height: 40px;
+	float: left;
 }
-span{
-	width: 15px;
+#wantToDohead {
+	text-align: none;
+	margin: 0 40px;
 }
-
-.input{
+/*all input box*/
+input, .input{
 	height: 30px;
 	width: 300px;
-	float: right;
-	margin-right: 20px;
 	border: 1px solid #666;
 }
-.input:hover {
+input:hover, .input:hover{
 	border: solid #fc9a76;
 }
+/*condition1*/
+#con1 {
+	text-align: center;
+}
 
+table {
+	table-layout: fixed;
+	width: 300px; 
+	border-spacing: 0;
+	border-collapse: collapse;
+	margin: auto;
+}
+#if10, #if11, #if20, #if21,#if30, #if31  {
+	width:150px;
+}
 
+#positionPat {
+	position: relative;
+	top: -46px;
+}
 
+/*condition2*/
+#allcon2 {
+	 margin-right: 50px;
+ }
+/*condition3*/
+#allcon3{
+	 margin-right: 0;
+	 text-align: right;
+}
+.contitle {
+	text-align: center;
+	margin-bottom: 0;
+	margin-top: 0;
+}
+
+	
+/*First dialog button*/
 #Iclose{
 	border: none;
 	position: absolute;
-	top: 380px;
+	top: 480px;
 	right: 0px;
 }
 
-/*what u should do dialog writing*/
+/*----------Dialog: Choice and should do writing--------*/
 #decisionDialog{
-	height: 365px;
+	height: 500px;
+	width: 450px;
 }
-#Dclose{
-	width: 100%;
+
+#ketsudan {
+	margin-top: 20px;
+	padding: 0;
+}
+
+#yarukoto {
+	margin-top: 10px;
+	padding: 0;
+}
+
+p input[type="button"] {
+	background-color: #fc9a76;
+	border: none;
+	border-radius: 50%;
+	color: white;
+	float:left;
+	width: 18px;
+	height: 18px;
+	font-size: 11px;
+}
+p[id*="KTD"], p[id*="YBK"] {
+	color: #696969;
+	font-size: 15px;
+	padding: 0;
+	margin-top: 10px;
+}
+
+.textinput {
+	float: right;
+	
+}
+.text-title{
+	position:absolute;
+	top:230px; 
+	right: 50px;
+	left:50px;
+}	
+
+
+#edit1, #edit2 {
+	width: 150px;
+}
+
+#tsuika{
+	border-right: solid white;
+	width: 50%;
 	position: absolute;
-	top: 300px;
+	top: 435px;
+	left: 0px;
+}
+#Dclose {
+	border-left: solid white;
+	width: 50%;
+	position: absolute;
+	top: 435px;
 	right: 0px;
 }
 
-/*dialog: ask for add or delete branch*/
+/*---------dialog: ask for add or delete branch---------*/
 #BranchDialog0, #BranchDialog1{
-	height: 300px;
+	height: 250px;
 }
 #Bclose0, #Bclose1{
+	width: 100%;
+	position: absolute;
+	top: 185px;
+	right: 0px;
+}
+/*--------Dialog: radio type - add/delete branch-------*/
+.radio{
+	float: left;
+	position: relative;
+	cursor: pointer;
+	font-size: 17px;
+	margin: 15px;
+}
+.label{
+	position: relative;
+    display: block;
+    float: left;
+    margin-right: 10px;
+    width: 15px;
+    height: 15px;
+    border: 2px solid #fc9a76;
+    border-radius: 100%;
+    -webkit-tap-highlight-color: transparent;
+}
+.label:after {
+		  content: '';
+		  position: absolute;
+		  top: 2.7px;
+		  left: 2.7px;
+		  width: 10px;
+		  height: 10px;
+		  border-radius: 100%;
+		  background: #fc9a76;
+		  transform: scale(0);
+		  transition: all .2s ease;
+		  opacity: 1%;
+		}
+.label:hover .label:after {
+		transform: scale(3.6);
+		}
+	
+input[type="radio"]:checked + .label {
+	border-color: #fc9a76;
+}
+input[type="radio"]:checked + .label:after {
+		transform: scale(1);
+		transition:all .2s cubic-bezier(.35,.9,.4,.9);
+		opacity: 1;
+}
+
+.hidden {
+	display: none;
+}
+
+/*------------Diaglog: write again dialog-------------------------*/
+#EditDialog{
+	height: 300px;
+	width: 400px;
+}
+p.instruct {
+	 padding: 0;
+	 margin: 30px 0px;
+ }
+ 
+#edit{
+	float: none;
+	margin: auto;
+}
+#tableEdit, #edit0 {
+	width: 400px;
+}
+
+#edit1, #edit2 {
+	width: 200px;
+}
+
+#Eclose{
 	width: 100%;
 	position: absolute;
 	top: 230px;
 	right: 0px;
 }
-/*radio type select choice: add/delete branch*/
-.same{
-	display: block;
-	text-align: left;
-	margin-left: 10%;
-	position: relative;
-	cursor: pointer;
-	line-height: 10px;
-	font-size: 17px;
+
+/*-------Diaglog: list of should do things-------*/
+#FditDialog {
+	height: 350px;
+	width: 450px;
+	text-align: center;
 }
-.spc{
-	margin: 15px;
-}
-label{
-	display: block;
-	border: #fc9a76;
-}
-/*write again dialog*/
-#EditDialog{
-	height: 260px;
-}
-#Eclose{
-	width: 100%;
+#hensyu {
+	width: 50%;
 	position: absolute;
-	top: 190px;
-	right: 0px;
-}
-#edit{
-	float: none;
-	margin: auto;
+	top: 285px;
+	left: 0px;
+	border-right: solid white;
 }
 
-  
+#Fclose{
+	width: 50%;
+	position: absolute;
+	top: 285px;
+	right: 0px;
+	border-left: solid white;
+}
+#should {
+	width: 400px;
+	position: absolute;
+	top: 240px;
+	left: 75px;
+	margin: auto;
+}

@@ -1,24 +1,28 @@
 //canvas情報取得だニャン
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d"); //何か描画する際は ctx.　にするにゃん
-var Cwidth = 1800; //初期幅ニャン *
-var Cheight = 5000; //初期高さニャン *
+var CopyCanvas = document.getElementById("copy");
+var CopyCtx = CopyCanvas.getContext("2d");
+var Cwidth = 1000; //初期幅ニャン *
+var Cheight = 800; //初期高さニャン *
 
 //シナリオ図の作成用変数だニャン
-var StartAndEndPoint = [[0,650,200,650]]; //[Sx,Sy,Ex,Ey]　線の終始
-var EndPoints = [[200,650,0]]; //list of End of Branch　枝の最後
-var YouShouldDoit = [[30,700,"今からやるべきこと"],[50,700,"入力してください"]]
+var StartAndEndPoint = [[0,450,200,450]]; //[Sx,Sy,Ex,Ey]　線の終始
+var EndPoints = [[200,450,0]]; //list of End of Branch　枝の最後
+var YouShouldDoit = [[30,600,"今からやるべきこと"],[50,600,"入力してください"]]
 var NowTaskCount = 0;
 var TextAndPlace = [[[],[],[]],[[],[],[]],[[],[],[]]];//ブランチにかんけいするテキスト用リスト
 var EditBranchB = [];
 var addedLine = [[],[]];
-var DiagonalLength = 320; //次の枝と枝の幅の初期値だニャン 200x2
+var DiagonalLength = 280; //次の枝と枝の幅の初期値だニャン 200x2
 var LineLength = 200; //枝の長さだニャン
 var EdittingText = 0;
 var EdittingBranch = 0;
 var ready = false;
 
-
+//copycount
+var Copycount = 0;
+var EditBox = [];
 
 //canvas上でのマウス操作時の情報取得だニャン
 canvas.addEventListener('click', onClick, false);
@@ -37,8 +41,8 @@ EditButtonT.addEventListener('click',tsuika,false);
 
 //編集
 var Edialog = document.getElementById('EditDialog');
-var EditButton = document.getElementById('Eclose');
-EditButton.addEventListener('click',EDialogClose,false);
+var EditButtonRed = document.getElementById('Eclose');
+EditButtonRed.addEventListener('click',EDialogClose,false);
 //タイトル編集
 var Tdialog = document.getElementById('TditDialog');
 var TditButton = document.getElementById('Tclose');
@@ -52,12 +56,12 @@ FditButtonH.addEventListener('click',FEdit,false);
 
 //ブランチの追加と削除0
 var Bdialog0 = document.getElementById('BranchDialog0');
-var EditButton = document.getElementById('Bclose0');
-EditButton.addEventListener('click',BDialogClose0,false);
+var EditButtonGreen = document.getElementById('Bclose0');
+EditButtonGreen.addEventListener('click',BDialogClose0,false);
 //ブランチの追加と削除0
 var Bdialog1 = document.getElementById('BranchDialog1');
-var EditButton = document.getElementById('Bclose1');
-EditButton.addEventListener('click',BDialogClose1,false);
+var EditButtonGreen1 = document.getElementById('Bclose1');
+EditButtonGreen1.addEventListener('click',BDialogClose1,false);
 
 
 //ブランチ編集用
@@ -79,7 +83,7 @@ function AddBranch(BranchNum,IF,P0,P1){
     }
     StartAndEndPoint = StartAndEndPoint.concat(addPoints);
 
-
+    
     EndPoints = EndPoints.concat(addEnds);
     TextAndPlace[BranchNum][0] = [X,Y,IF];
     TextAndPlace[BranchNum][2] = [X+50,Y-(DChange/2)-20,P0];
@@ -138,8 +142,10 @@ function onClick(e) {
             if(PointY-acceptLength < y && y < PointY+acceptLength){// width and height +- 5 is ok
                 if(EndPoints[i][2] == 0){
                     EdittingBranch = i;
-                    Ddialog.showModal();  
-                    ResetD();     
+                    //DELHTML(EdittingBranch);
+                    Ddialog.showModal();
+                    InnerText(EdittingBranch);  
+                    //ResetD();     
                 }
             }
         }
@@ -157,8 +163,8 @@ function onClick(e) {
                     EdittingBranch = i;
                     Bdialog1.showModal();
                 }
-
-
+                
+                
             }
         }
     }
@@ -179,8 +185,11 @@ function onClick(e) {
         //}
         
     }
-    let PointX = YouShouldDoit[1][1];
+    let PointX = YouShouldDoit[1][1]-100;
     let PointY = YouShouldDoit[1][0];
+    console.log(x,y)
+    console.log(PointX,PointY)
+    console.log("X,Y")
     if(PointX-acceptLength < x && x < PointX+acceptLength){
         if(PointY-acceptLength < y && y < PointY+acceptLength){// width and height +- 5 is ok
             Fdialog.showModal(); 
@@ -223,18 +232,11 @@ function IDialogClose(){
 
 //蒼ボタンを押したときのダイアログの結果
 function tsuika(){
-    var ketsudan = document.getElementById("ketsudan")
-    var yarubekikoto = document.getElementById("yarukoto")
-    var titel = document.getElementById("title").value;
+    DELHTML(EdittingBranch)
+    var title = document.getElementById("title").value;
     var decision = document.getElementById("decision").value;
     var ToDo = document.getElementById("ToDo").value;
-    for(let i = 0;i <EndPoints[EdittingBranch][4].length;i++){
-        DELList("KTD" + EdittingBranch+i);
-    }
-    for(let i = 0;i <EndPoints[EdittingBranch][5].length;i++){
-        DELList("YBK" + EdittingBranch+i);
-    }
-    if(titel){
+    if(title){
         EndPoints[EdittingBranch][3] = title;
     }
     if(decision){
@@ -243,23 +245,40 @@ function tsuika(){
     if(ToDo){
         EndPoints[EdittingBranch][5].push(ToDo);
     }
-    for(let i = 0;i <EndPoints[EdittingBranch][4].length;i++){
-        ketsudan.innerHTML +=  "<p id = " + "KTD" +EdittingBranch+ i + ">" +"<input type=button value=X onclick=DELListbyB("+"KTD"+EdittingBranch+i + ","+EdittingBranch+","+i+",4); />" + EndPoints[EdittingBranch][4][i] + "</p>";
-    }
-    for(let i = 0;i <EndPoints[EdittingBranch][5].length;i++){
-        yarubekikoto.innerHTML +=  "<p id = " + "YBK" + EdittingBranch+i + ">" +"<input type=button value=X onclick=DELListbyB("+"YBK"+EdittingBranch+i + ","+EdittingBranch+","+i+",5); />" + EndPoints[EdittingBranch][5][i] + "</p>";
-    }
+    InnerText(EdittingBranch);
     document.yarubekikotoF.reset();
 }
+
+function DELHTML(Branch){
+    for(let i = 0;i <EndPoints[Branch][4].length;i++){
+        DELList("KTD" + Branch+i);
+    }
+    for(let i = 0;i <EndPoints[Branch][5].length;i++){
+        DELList("YBK" + Branch+i);
+    }
+    console.log("DELed")
+}
+function InnerText(Branch){
+    var ketsudan = document.getElementById("ketsudan")
+    var yarubekikoto = document.getElementById("yarukoto")
+
+    
+    for(let i = 0;i <EndPoints[Branch][4].length;i++){
+        console.log("koko")
+        ketsudan.innerHTML +=  "<p id = " + "KTD" +Branch+ i + ">" +"<input type=button value=X onclick=DELListbyB("+"KTD"+Branch+i+","+EdittingBranch+","+i+",4); />" + EndPoints[Branch][4][i] + "</p>";
+    }
+    for(let i = 0;i <EndPoints[Branch][5].length;i++){
+        yarubekikoto.innerHTML +=  "<p id = " + "YBK" + Branch+i + ">" +"<input type=button value=X onclick=DELListbyB("+"YBK"+Branch+i+","+EdittingBranch+","+i+",5); />" + EndPoints[Branch][5][i] + "</p>";
+    } 
+}
 function DDialogClose(){
-    for(let i = 0;i <EndPoints[EdittingBranch][4].length;i++){
+    /* for(let i = 0;i <EndPoints[EdittingBranch][4].length;i++){
         DELList("KTD" + EdittingBranch+i);
     }
     for(let i = 0;i <EndPoints[EdittingBranch][5].length;i++){
         DELList("YBK" + EdittingBranch+i);
-    }
-
-    EndPoints[EdittingBranch][2] = 1;
+    } */
+    DELHTML(EdittingBranch);
     ReWrite();
     Ddialog.close();
     EdittingBranch = 0;
@@ -273,29 +292,44 @@ function EDialogClose(){
     TextAndPlace[EdittingBranch][0][2] = EditText0;
     TextAndPlace[EdittingBranch][2][2] = EditText1;
     TextAndPlace[EdittingBranch][1][2] = EditText2;
+    if(Copycount){
+        var addBox = [[TextAndPlace[EdittingBranch][2][1]+(TextAndPlace[EdittingBranch][2][1]-TextAndPlace[EdittingBranch][0][1]),TextAndPlace[EdittingBranch][0][0],(TextAndPlace[EdittingBranch][1][1]-TextAndPlace[EdittingBranch][2][1])*2,TextAndPlace[EdittingBranch][0][0]+400]];
+        EditBox = EditBox.concat(addBox);
+        console.log(EditBox,"Editbox1",addBox,"addbox")
+    }
     ReWrite();
     Edialog.close();
     EdittingText = 0;
+    
 }
 //
 function FEdit(){
     var YouShouldDoit = document.getElementById("YouShouldDoit");
     var EditText = document.getElementById("should").value;
-    YouShouldDoit.innerHTML +=  "<p id = " + "YSD" + NowTaskCount + ">" +"<input type=button value=X onclick=DELListbyB(YSD"+NowTaskCount + "); />" + EditText + "</p>";
+    YouShouldDoit.innerHTML +=  "<p id = " + "YSD" + NowTaskCount + ">" +"<input type=button value=X onclick=DELListFORS("+"YSD"+NowTaskCount+"); />" + EditText + "</p>";
     NowTaskCount += 1;
     document.YouShouldDoit.reset();
+}
+function DELListFORS(N){
+    N.remove();
 }
 
 function DELList(N){
     console.log(N,"N")
     T = document.getElementById(N)
+    console.log(T,"T")
     T.remove();
 }
 
 function DELListbyB(N,e,i,t){
-    console.log(N,"N")
+    console.log(N,"n")
     EndPoints[e][t].splice(i,1)
     T = document.getElementById(N)
+    console.log(T,"t")
+    N.remove();
+}
+
+function DELListN(N){
     N.remove();
 }
 function FDialogClose(){
@@ -324,7 +358,7 @@ function BDialogClose1(){
     if(RValue == "del1"){
         DelBranch(EdittingBranch+1)
     }
-
+    
     EdittingBranch = 0;
     Bdialog1.close();
 }
@@ -334,10 +368,10 @@ function ResetD(){
     var ketsudan = document.getElementById("ketsudan")
     var yarubekikoto = document.getElementById("yarukoto")
     for(let i = 0;i <EndPoints[EdittingBranch][4].length;i++){
-        ketsudan.innerHTML +=  "<p id = " + "KTD" +EdittingBranch+ i + ">" +"<input type=button value=X onclick=DELList("+"KTD"+EdittingBranch+i + "); />" + EndPoints[EdittingBranch][4][i] + "</p>";
+        ketsudan.innerHTML +=  "<p id = " + "KTD" +EdittingBranch+ i + ">" +"<input type=button value=X onclick=DELListbyB("+"KTD"+EdittingBranch+i + "); />" + EndPoints[EdittingBranch][4][i] + "</p>";
     }
     for(let i = 0;i <EndPoints[EdittingBranch][5].length;i++){
-        yarubekikoto.innerHTML +=  "<p id = " + "YBK" + EdittingBranch+i + ">" +"<input type=button value=X onclick=DELList("+"YBK"+EdittingBranch+i + "); />" + EndPoints[EdittingBranch][5][i] + "</p>";
+        yarubekikoto.innerHTML +=  "<p id = " + "YBK" + EdittingBranch+i + ">" +"<input type=button value=X onclick=DELListbyB("+"YBK"+EdittingBranch+i + "); />" + EndPoints[EdittingBranch][5][i] + "</p>";
     }
 }
 //描画用----------------------------------------------- ichika
@@ -352,6 +386,7 @@ function ReWrite(){
 //
 function FirstDrow(){
     ctx.lineWidth = 2;//*
+	ctx.strokeStyle = "#fc9a76";
     // http://www.htmq.com/canvas/
     for(let i = 0;i<StartAndEndPoint.length;i++){
         ctx.beginPath();
@@ -371,31 +406,45 @@ function FirstDrow(){
 function DrowBox(){
     for(let i = 0;i < EndPoints.length;i++){
         if(EndPoints[i][2] == 0){
-            ctx.fillStyle = "rgb(0, 0, 255)"
-            ctx.fillRect(EndPoints[i][1]-7,EndPoints[i][0],14,14)
+            ctx.fillStyle = "rgb(0, 0, 255)";
+            ctx.fillRect(EndPoints[i][1]-7,EndPoints[i][0],14,14);
         }
     }
     for(let i = 0;i<EditBranchB.length;i++){
-        ctx.fillStyle = "rgb(0, 255, 0)"
-        ctx.fillRect(EditBranchB[i][1]-7,EditBranchB[i][0]-5,14,14)
+        ctx.fillStyle = "rgb(0, 255, 0)";
+        const chara = new Image();
+        chara.src = "./img/setting2.png";  // 画像のURLを指定
+        chara.onload = () => {
+            ctx.drawImage(chara, EditBranchB[i][1]-21, EditBranchB[i][0]-21);
+        };
     }
 
     for(let i = 0;i < TextAndPlace.length;i++){
         //for(let j = 0;j<TextAndPlace[i].length;j++){
             if(TextAndPlace[i][0]){
                 ctx.fillStyle = "rgb(255, 0, 0)";
-                ctx.fillRect(TextAndPlace[i][0][1]-7,TextAndPlace[i][0][0]-5,14,14)
+                ctx.fillRect(TextAndPlace[i][0][1]-7,TextAndPlace[i][0][0]-5,14,14);
 
             }
             
             
         //}        
     }
-    ctx.fillRect(YouShouldDoit[1][1]-7,YouShouldDoit[1][0]+3,14,14)
+    ctx.fillRect(YouShouldDoit[1][1]-100,YouShouldDoit[1][0]+3,14,14)
+    if(Copycount){
+        ctx.globalAlpha = 0.8;
+        ctx.fillStyle = "rgb(255, 255, 100)";
+        for(let i = 0;i<EditBox.length;i++){
+            console.log(EditBox,"EditBoxs")
+            ctx.fillRect(EditBox[i][0],EditBox[i][1],EditBox[i][2],EditBox[i][3]);
+        }
+        ctx.globalAlpha = 1;
+    }
+    
 }
 //
 function WriteText(){
-    ctx.fillStyle = "blue"; //*
+    ctx.fillStyle = "#666"; //*
     ctx.font = "20px 'ＭＳ ゴシック'";
     ctx.textAlign = "center";
     ctx.textBaseline = "top";
@@ -403,7 +452,6 @@ function WriteText(){
         var changeLine = 0;
         for(let j = 0;j<TextAndPlace[i].length;j++){
             let TextNum = i;
-            console.log(TextAndPlace[i][j])
             if(TextAndPlace[i][j].length){
                 if(j == 0){
                     ctx.textAlign = "left";
@@ -423,7 +471,7 @@ function WriteText(){
         ctx.fillText(YouShouldDoit[i][2],YouShouldDoit[i][1]+120,YouShouldDoit[i][0],300)
     }
     for(let i = 0;i < EndPoints.length;i++){
-        if(EndPoints[2]){
+        if(EndPoints[2] && EndPoints[i][2] == 0){
             ctx.fillText(EndPoints[i][3],EndPoints[i][1],EndPoints[i][0]+20,100)
         }
     }
@@ -452,8 +500,16 @@ function TDialogClose(){
 function ChangeCanvasSize(){
     canvas.width = Cwidth;
     canvas.height = Cheight;
+    
 }
 
+//Make Copy
+function MKcopy(){
+    
+    CopyCtx.drawImage(canvas, 0, 0);
+    console.log("copyed")
+    Copycount = 1;
+}
 function TwoDindex(List,Elments){
     for(let i = 0;i<List.length;i++){
         if(Elments[0]==List[i][0] && Elments[1]==List[i][1]){
