@@ -6,55 +6,60 @@ html{
 	scroll-behavior: smooth;
 }
 
-h1 {
-	color: white;
-	font-size: 500%;
-}
-
 /*header + background*/
 .image{
-	background: whtie;
+	background: #47bec3;
+    width: 100%;
+    height: 800px;
 	position: -webkit-sticky;
 	position: sticky;
-	top: -600px;
+	top: -650px;
+	transition: 0.5s;
+}
+
+.bgP{
+	background:#47bec3;
 	text-align: center;
-	background-repeat: no-repeat;
 	height: 800px;
 	width: 100%;
 	transition: 0.5s;
-	text-decoration: none;
-}
-.bgP{
-	background: #47bec3;
-	position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-	transition: 0.5s;
-	text-decoration: none;
 }
 
-.header{
+.header {
+	color: white;
+	font-size: 90px;
+	margin: auto;
 	position: -webkit-sticky;
 	position: sticky;
-	top: 350px;
-	margin:auto;
-	text-decoration: none;
-	transition: 0.5s;
+	top: 300px;
+	text-align: center;
 }
 
+.no_underline {
+	text-decoration: none;
+}
+	
 
-h1:hover, h1:focus {
+.header:hover, .header:focus {
   color: teal;
   transition: 0.5s;
 }
 
-#para{
-	width: 500px;
+
+.para{
+	width: 800px;
 	margin:auto;
-	margin-top: 100px;
+	margin-top: 50px;
 }
+
+h2 {
+	font-size: 35px;
+	margin-top: 100px;
+	border-bottom: 3px solid #47bec3;
+	width: 100%;
+}
+
+
 
 /*button in page*/
 button{
@@ -68,20 +73,12 @@ button{
 	margin: auto;
 	cursor:pointer;
 	transition-duration: 0.4s;
+	width: 200px;
 }
 button:hover {
 	background-color: #47bec3;
 	color: white;
 }
 
-/*sticky thing*/
-.sticky {
-  position: fixed;
-  top: -600px;
-}
 
-.sticky2{
-	position: fixed;
-	top:100px;
-}
 

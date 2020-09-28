@@ -4,7 +4,7 @@ html{
 	color: grey;
 	text-align: center;
 	background: url(img/47bec3.png)repeat-x center top,url(img/ffc541.png) repeat-x center,url(img/fc9a76.png) repeat-x center bottom;
-	background-size: 100% 950px, 100% 1000px, 100% 1000px;
+	background-size: 100% 1000px, 100% 930px, 100% 950px;
 	scroll-behavior: smooth;
 }
 
@@ -12,8 +12,13 @@ html{
 	margin-top:-8px;
 	background-color: white;
 	padding: 20px 0px;
-	text-transform: uppercase;
-	font-size: 300%;
+	font-size: 400%;
+	font-family: 'Amatic SC';
+	font-stretch: ultra-expanded;
+}
+
+.header {
+	font-size: 35px;
 }
 
 /*white block around text*/
@@ -27,6 +32,8 @@ html{
 	
 }
 .topblock {
+	height: 270px;
+	padding: 20px 90px;
 	margin-top: -10px;
 	margin-bottom:30px;
 
@@ -34,33 +41,52 @@ html{
 
 .block2{
 	top: 1700px;
-	margin-top: 100px;
-	margin-bottom: 30px;
+	margin-top: 70px;
+	margin-bottom: 10px;
 
 }
 .block3{
 	top: 2500px;
-	margin-top: 100px;
-	margin-bottom: 250px;
-
+	margin-top: 20px;
+	margin-bottom: 200px;
+	
 }
 
 
 /*pictures positioning*/
 #purposeI{
 	width: 574px;
-	height: auto;
+	height: 250px;
 }
 #howToI{
 	height: auto;
 	width: 500px;
 	position: absolute;
-	top: 1330px;
-	right: 45px;
+	top: 1450px;
+	right: 0;
+	z-index: -1;
 }
+#howToC {
+	height: 700px;
+	width: 1400px;
+	position: absolute;
+	top: 1170px;
+	right: 0;
+	z-index: -2;
+	margin: 0;
+	opacity: 80%;
+	object-fit: cover;
+	float:float;
+}
+
 #honnbannI{
 	height:auto;
 	width: 300px;
+}
+
+#honnbannS {
+	position: relative;
+	top: -110px;
 }
 
 /*arrow + animation*/
@@ -86,8 +112,8 @@ html{
 
 
 #howToS{
-	top: 1100px;
-	border: solid #ffc541;
+	position:absolute;
+	top: 1000px;
 	
 }
 
@@ -115,3 +141,59 @@ button.yellow:hover{
 button.pic{
 	background: none;
 }
+
+/*.block, #purposeI {
+  opacity: 0;
+  transform: translateY(10vh);
+  visibility: hidden;
+  transition: opacity 0.6s ease-out, transform 1.2s ease-out;
+  will-change: opacity, visibility;
+}
+.fade-in-visible {
+  opacity: 1;
+  transform: none;
+  visibility: visible;
+}*/
+
+/*second way of fadein on scrolldown
+.moveAdd {
+    animation-name: textIn;
+    animation-duration: 1.2s; //sets the time of animation
+    animation-timing-function: ease;
+    animation-iteration-count: 1;
+    animation-delay: 0s;
+    animation-play-state: normal;
+    animation-direction: normal;
+    animation-fill-mode: forwards;
+  }
+  .moveRemove {
+    animation-name: textOut;
+    animation-duration: 1.2s; //sets the time of animation
+    animation-timing-function: ease;
+    animation-iteration-count: 1;
+    animation-delay: 0s;
+    animation-play-state: normal;
+    animation-direction: normal;
+    animation-fill-mode: forwards;
+  }
+  @keyframes textOut {
+    0% {
+      opacity: 1;
+      margin-top: 50px;
+    }
+    100% {
+      opacity: 0;
+      margin-top: 20px;
+    }
+  }
+  @keyframes textIn {
+    0% {
+      opacity: 0;
+      margin-top: 50px;
+    }
+    100% {
+      opacity: 1;
+      margin-top: 20px;
+    }
+  }
+}*/
