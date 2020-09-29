@@ -475,6 +475,7 @@ function WriteText(){
         ctx.fillText(YouShouldDoit[i][2],YouShouldDoit[i][1]+120,YouShouldDoit[i][0],300)
     }
     for(let i = 0;i < EndPoints.length;i++){
+        ctx.textAlign = "center";
         if(EndPoints[2] && EndPoints[i][2] == 0){
             ctx.fillText(EndPoints[i][3],EndPoints[i][1],EndPoints[i][0]+20,100)
         }
@@ -527,6 +528,7 @@ function TwoDindex(List,Elments){
     return "error"
 }
 
+
 document.getElementById("download").onclick = (event) => {
     let link = document.createElement("a");
     link.href = canvas.toDataURL("image/png");
@@ -534,7 +536,7 @@ document.getElementById("download").onclick = (event) => {
     link.click();
 }
 
+
 ChangeCanvasSize();
 InitialDialog.showModal(); 
-
 
