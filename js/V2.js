@@ -530,9 +530,10 @@ function TwoDindex(List,Elments){
 
 
 document.getElementById("download").onclick = (event) => {
+    var now = new Date();
     let link = document.createElement("a");
     link.href = canvas.toDataURL("image/png");
-    link.download = "test.png";
+    link.download = "CarrerRoute"+now+".png";
     link.click();
 }
 
