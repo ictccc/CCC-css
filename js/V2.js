@@ -526,9 +526,6 @@ function TwoDindex(List,Elments){
     }
     return "error"
 }
-ChangeCanvasSize();
-InitialDialog.showModal(); 
-
 
 document.getElementById("download").onclick = (event) => {
     let link = document.createElement("a");
@@ -536,3 +533,8 @@ document.getElementById("download").onclick = (event) => {
     link.download = "test.png";
     link.click();
 }
+
+ChangeCanvasSize();
+InitialDialog.showModal(); 
+
+
