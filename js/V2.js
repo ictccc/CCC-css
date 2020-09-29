@@ -28,38 +28,38 @@ var EditBox = [];
 canvas.addEventListener('click', onClick, false);
 
 //初期生成時のダイアログ関係
-var Idialog = document.getElementById('InitialDialog');
+var InitialDialog = document.getElementById('InitialDialog');
 var Branch_close = document.getElementById('Iclose');
 Branch_close.addEventListener('click',IDialogClose,false);
 
 //決断、やるべきことを書くダイアログ
-var Ddialog = document.getElementById('decisionDialog');
+var decisionDialog = document.getElementById('decisionDialog');
 var EditButton = document.getElementById('Dclose');
 EditButton.addEventListener('click',DDialogClose,false);
 var EditButtonT = document.getElementById('tsuika');
 EditButtonT.addEventListener('click',tsuika,false);
 
 //編集
-var Edialog = document.getElementById('EditDialog');
+var EditDialog = document.getElementById('EditDialog');
 var EditButtonRed = document.getElementById('Eclose');
 EditButtonRed.addEventListener('click',EDialogClose,false);
 //タイトル編集
-var Tdialog = document.getElementById('TditDialog');
+var TditDialog = document.getElementById('TditDialog');
 var TditButton = document.getElementById('Tclose');
 TditButton.addEventListener('click',TDialogClose,false);
 //やるべきこと編集用
-var Fdialog = document.getElementById('FditDialog');
+var FditDialog = document.getElementById('FditDialog');
 var FditButton = document.getElementById('Fclose');
 FditButton.addEventListener('click',FDialogClose,false);
 var FditButtonH = document.getElementById('hensyu');
 FditButtonH.addEventListener('click',FEdit,false);
 
 //ブランチの追加と削除0
-var Bdialog0 = document.getElementById('BranchDialog0');
+var BranchDialog0 = document.getElementById('BranchDialog0');
 var EditButtonGreen = document.getElementById('Bclose0');
 EditButtonGreen.addEventListener('click',BDialogClose0,false);
 //ブランチの追加と削除0
-var Bdialog1 = document.getElementById('BranchDialog1');
+var BranchDialog1 = document.getElementById('BranchDialog1');
 var EditButtonGreen1 = document.getElementById('Bclose1');
 EditButtonGreen1.addEventListener('click',BDialogClose1,false);
 
@@ -143,7 +143,7 @@ function onClick(e) {
                 if(EndPoints[i][2] == 0){
                     EdittingBranch = i;
                     //DELHTML(EdittingBranch);
-                    Ddialog.showModal();
+                    decisionDialog.showModal();
                     InnerText(EdittingBranch);  
                     //ResetD();     
                 }
@@ -157,11 +157,11 @@ function onClick(e) {
             if(PointY-acceptLength < x && x < PointY+acceptLength){// width and height +- 5 is ok
                 if(EditBranchB[i][2] == 0){
                     EdittingBranch = i;
-                    Bdialog0.showModal();
+                    BranchDialog0.showModal();
                 }
                 if(EditBranchB[i][2] == 1){
                     EdittingBranch = i;
-                    Bdialog1.showModal();
+                    BranchDialog1.showModal();
                 }
                 
                 
@@ -177,7 +177,7 @@ function onClick(e) {
                 if(PointY-acceptLength < y && y < PointY+acceptLength){// width and height +- 5 is ok
                     EdittingText = 0;
                     EdittingBranch = i;
-                    Edialog.showModal(); 
+                    EditDialog.showModal(); 
                 }
             }
         }
@@ -192,7 +192,7 @@ function onClick(e) {
     console.log("X,Y")
     if(PointX-acceptLength < x && x < PointX+acceptLength){
         if(PointY-acceptLength < y && y < PointY+acceptLength){// width and height +- 5 is ok
-            Fdialog.showModal(); 
+            FditDialog.showModal(); 
         }
     }
 }
@@ -226,7 +226,7 @@ function IDialogClose(){
         Addline(2);
     }
     ReWrite();
-    Idialog.close();
+    InitialDialog.close();
     EdittingText = 0;
 }
 
@@ -280,7 +280,7 @@ function DDialogClose(){
     } */
     DELHTML(EdittingBranch);
     ReWrite();
-    Ddialog.close();
+    decisionDialog.close();
     EdittingBranch = 0;
 }
 
@@ -298,7 +298,7 @@ function EDialogClose(){
         console.log(EditBox,"Editbox1",addBox,"addbox")
     }
     ReWrite();
-    Edialog.close();
+    EditDialog.close();
     EdittingText = 0;
     
 }
@@ -333,7 +333,7 @@ function DELListN(N){
     N.remove();
 }
 function FDialogClose(){
-    Fdialog.close();
+    FditDialog.close();
     EdittingText = 0;
 }
 //緑ボタン0を押したときのダイアログの結果
@@ -348,7 +348,7 @@ function BDialogClose0(){
         AddBranch(EdittingBranch+1,"入力してください","パターン１","パターン２");
     }
     EdittingBranch = 0;
-    Bdialog0.close();
+    BranchDialog0.close();
 }
 
 function BDialogClose1(){
@@ -360,7 +360,7 @@ function BDialogClose1(){
     }
     
     EdittingBranch = 0;
-    Bdialog1.close();
+    BranchDialog1.close();
 }
 
 
@@ -377,11 +377,14 @@ function ResetD(){
 //描画用----------------------------------------------- ichika
 //
 function ReWrite(){
+    
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
     FirstDrow();
     DrowBox();
     WriteText();
     ClearTextBox();
+    
 }
 //
 function FirstDrow(){
@@ -404,6 +407,15 @@ function FirstDrow(){
 }
 //
 function DrowBox(){
+    if(Copycount){
+        ctx.globalAlpha = 0.3;
+        ctx.fillStyle = "rgb(255, 255, 100)";
+        for(let i = 0;i<EditBox.length;i++){
+            console.log(EditBox,"EditBoxs")
+            ctx.fillRect(EditBox[i][0],EditBox[i][1],EditBox[i][2],EditBox[i][3]);
+        }
+        ctx.globalAlpha = 1;
+    }
     for(let i = 0;i < EndPoints.length;i++){
         if(EndPoints[i][2] == 0){
             ctx.fillStyle = "rgb(0, 0, 255)";
@@ -431,15 +443,7 @@ function DrowBox(){
         //}        
     }
     ctx.fillRect(YouShouldDoit[1][1]-100,YouShouldDoit[1][0]+3,14,14)
-    if(Copycount){
-        ctx.globalAlpha = 0.8;
-        ctx.fillStyle = "rgb(255, 255, 100)";
-        for(let i = 0;i<EditBox.length;i++){
-            console.log(EditBox,"EditBoxs")
-            ctx.fillRect(EditBox[i][0],EditBox[i][1],EditBox[i][2],EditBox[i][3]);
-        }
-        ctx.globalAlpha = 1;
-    }
+    
     
 }
 //
@@ -486,13 +490,13 @@ function ClearTextBox(){
 //
 
 function EditTitle(){
-    Tdialog.showModal();
+    TditDialog.showModal();
 }
 
 function TDialogClose(){
     var EditText = document.getElementById("editT").value;
     Parpas.innerHTML = EditText;
-    Tdialog.close();
+    TditDialog.close();
     document.Tedit.reset();
 }
 //
@@ -501,6 +505,10 @@ function ChangeCanvasSize(){
     canvas.width = Cwidth;
     canvas.height = Cheight;
     
+}
+
+function DelDialog(Dialog_name){
+    Dialog_name.close()
 }
 
 //Make Copy
@@ -519,4 +527,12 @@ function TwoDindex(List,Elments){
     return "error"
 }
 ChangeCanvasSize();
-Idialog.showModal(); 
+InitialDialog.showModal(); 
+
+
+document.getElementById("download").onclick = (event) => {
+    let link = document.createElement("a");
+    link.href = canvas.toDataURL("image/png");
+    link.download = "test.png";
+    link.click();
+}
