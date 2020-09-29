@@ -459,7 +459,7 @@ function WriteText(){
             if(TextAndPlace[i][j].length){
                 if(j == 0){
                     ctx.textAlign = "left";
-                    ctx.fillText(j+TextAndPlace[i][j][2],TextAndPlace[i][j][1]+50,TextAndPlace[i][j][0]-15,200);
+                    ctx.fillText(TextAndPlace[i][j][2],TextAndPlace[i][j][1]+50,TextAndPlace[i][j][0]-15,200);
                 }else if(j == 1){
                     ctx.textAlign = "left";
                     ctx.fillText(TextAndPlace[i][j][2],TextAndPlace[i][j][1],TextAndPlace[i][j][0]-5,200)
