@@ -418,7 +418,7 @@ function DrowBox(){
     }
     for(let i = 0;i < EndPoints.length;i++){
         if(EndPoints[i][2] == 0){
-            ctx.fillStyle = "rgb(0, 0, 255)";
+            ctx.fillStyle = "rgb(0,0,255)";
             ctx.fillRect(EndPoints[i][1]-7,EndPoints[i][0],14,14);
         }
     }

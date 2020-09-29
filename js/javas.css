@@ -348,3 +348,17 @@ p.instruct {
 	left: 75px;
 	margin: auto;
 }
+.DelDialog {
+    background: #fc9a76;
+	border: none;
+	color: white;
+	border-radius: 50%;
+	width: 30px;
+	float: right;
+    cursor: pointer;
+    position: absolute;
+    top:0;
+    right: 0;
+	
+}
+}
