@@ -536,8 +536,7 @@ document.getElementById("download").onclick = (event) => {
     link.download = "CarrerRoute"+now+".png";
     link.click();
 }
-
-//-----------------------------------------------------------------
+//
 var file = document.getElementById('file');
 
 function loadLocalImage(e) {
@@ -566,11 +565,12 @@ file.addEventListener('change', loadLocalImage, false);
 function canvasDraw() {
 
     // Canvas上に画像を表示
-    var img = new Image();
-    img.src = uploadImgSrc;
-    img.onload = function() {
-        CopyCtx.drawImage(img, 0, 0, 1000, 800);
+    var showimg = new Image();
+    showimg.src = uploadImgSrc;
+    showimg.onload = function() {
+        CopyCtx.drawImage(showimg, 0, 0, 1000, 800);
     }
+    Copycount += 1
 }
 
 ChangeCanvasSize();
