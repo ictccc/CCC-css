@@ -9,6 +9,7 @@
         <canvas id="canvas"></canvas>
         <canvas id="copy" width="1000" height="800"></canvas><br>
         <input type="button" value="copy" onclick="MKcopy()" id="copyBut"/>
+        <button id="download">download</button>
 
         <!--緊急事態-->
         <dialog id = "Emergency">
@@ -21,6 +22,7 @@
         </dialog>
         <!--Branch Dialog page つまり　ここで枝の追加とかさくじょとかするにゃん-->
         <dialog id = "InitialDialog">
+            <input type="button" value="X" onclick="DelDialog(InitialDialog)" id="DelDialog"/>
             <p class="instruct"><strong>やりたいこと、条件を入力してください</strong></p>
             <form id ="inputs">
                 <div id="wantToDohead">やりたいこと<br> 
@@ -70,6 +72,7 @@
 		
         <!--決断内容とやること-->
         <dialog id = "decisionDialog" >
+            <input type="button" value="X" onclick="DelDialog(decisionDialog)" id="DelDialog"/>
             <p class="instruct" id = "ketsudan"><strong>決断</p><p class="instruct"id = "yarukoto">やるべきこと</strong><br></p>
              <div class="text-title">
 				<p>あなたがその時にするであろう決断とその時にやるべきことを入力してください</p>
@@ -87,6 +90,7 @@
 		
         <!--テキスト変更-->
         <dialog id = "EditDialog" >
+            <input type="button" value="X" onclick="DelDialog(EditDialog)" id="DelDialog"/>
 		<p class="instruct"><strong>書き直してください</strong></p>
             <form name = "edit" id ="inputs"onsubmit="return false;">
 			<div id="con1">条件<br>
@@ -106,6 +110,7 @@
         </dialog>
         <!--たいとる変更-->
         <dialog id = "TditDialog" >
+            <input type="button" value="X" onclick="DelDialog(TditDialog)" id="DelDialog"/>
             <p class="instruct"><strong>書き直してください</strong></p>
             <form name = "Tedit" id ="inputs"onsubmit="return false;">
                 <input type="text" name="decision" id = "editT"><br>
@@ -114,6 +119,7 @@
         </dialog>
         <!--For You Should do it-->
         <dialog id = "FditDialog" >
+            <input type="button" value="X" onclick="DelDialog(FditDialog)" id="DelDialog"/>
             <p id = "YouShouldDoit"></p>
             <p class="instruct"><strong>やりたいことを追加してください</strong></p>
             <form name = "YouShouldDoit" id ="inputs"onsubmit="return false;">
@@ -124,6 +130,7 @@
         </dialog>
         <!--ブランチの追加等0-->
         <dialog id = "BranchDialog0">
+            <input type="button" value="X" onclick="DelDialog(BranchDialog0)" id="DelDialog"/>
             <p class="instruct"><strong>なにをしますか？</strong></p>
             <form id ="RadioBs0" name = "B0">
 			<label>
@@ -137,6 +144,7 @@
         </dialog>
         <!--ブランチの追加等1-->
         <dialog id = "BranchDialog1">
+            <input type="button" value="X" onclick="DelDialog(BranchDialog1)" id="DelDialog"/>
             <p class="instruct"><strong>なにをしますか？</strong></p>
             <form id ="RadioBs1" name = "B1">
 			<label>
