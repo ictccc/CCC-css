@@ -70,7 +70,7 @@ button{
 	text-align: center;
 	display:inline-block;
 	font-size: 16px;
-	margin: auto;
+	margin: 70px auto;
 	cursor:pointer;
 	transition-duration: 0.4s;
 }
@@ -122,15 +122,5 @@ h1.midtext{
 .imgHow{
 	padding-right: 300px;
 	float: right;
-}
-
-.line {
-	border-left: 15px solid #ffc541;
-	height: 4500px;
-	display: block;
-	position: absolute;
-	top: 900px;
-	left: 400px;
-	z-index: -1;
 }
 
