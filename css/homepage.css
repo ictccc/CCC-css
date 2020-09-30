@@ -62,7 +62,7 @@ html{
 	height: auto;
 	width: 500px;
 	position: absolute;
-	top: 1450px;
+	top: 1430px;
 	right: 0;
 	z-index: -1;
 }
@@ -70,7 +70,7 @@ html{
 	height: 700px;
 	width: 1400px;
 	position: absolute;
-	top: 1200px;
+	top: 1124px;
 	right: 0;
 	z-index: -2;
 	margin: 0;
