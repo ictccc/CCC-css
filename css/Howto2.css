@@ -154,5 +154,6 @@ p {
 img{ 
 	float: left;
 	z-index: -2;
+	margin-right: 30px;
 }
 
