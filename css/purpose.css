@@ -56,6 +56,13 @@ h1:hover, h1:focus {
 	margin-top: 100px;
 }
 
+#link{
+	position: absolute;
+	top: 700px;
+	height: 1px;
+	width: 900px;
+}
+
 /*button in page*/
 button{
 	border:0;
