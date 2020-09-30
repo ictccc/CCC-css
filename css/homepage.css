@@ -70,7 +70,7 @@ html{
 	height: 700px;
 	width: 1400px;
 	position: absolute;
-	top: 1070px;
+	top: 1100px;
 	right: 0;
 	z-index: -2;
 	margin: 0;
@@ -144,7 +144,7 @@ button.pic{
 
 .footer {
 	position: absolute;
-	top: 2670px;
+	top: 2700px;
 	right:0;
 	bottom: 0;
 	width: 100%;
