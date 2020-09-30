@@ -59,7 +59,12 @@ h2 {
 	width: 100%;
 }
 
-
+#link {
+	position: absolute;
+	top:700px;
+	height: 1px;
+	width: 100%;
+}
 
 /*button in page*/
 button{
@@ -70,7 +75,7 @@ button{
 	text-align: center;
 	display:inline-block;
 	font-size: 16px;
-	margin: auto;
+	margin: 50px auto;
 	cursor:pointer;
 	transition-duration: 0.4s;
 	width: 200px;
@@ -79,6 +84,7 @@ button:hover {
 	background-color: #47bec3;
 	color: white;
 }
+
 
 
 

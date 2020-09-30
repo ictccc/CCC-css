@@ -5,6 +5,7 @@ html{
 	scroll-behavior: smooth;
 }
 
+
 /*header + background*/
 .image{
 	background: #ffc541;
@@ -58,6 +59,18 @@ html{
 	top: -670px;
 }
 
+#link1 {
+	height: 1px;
+	width: 900px;
+	position: absolute;
+	top: 700px;
+}
+#link2 {
+	height: 1px;
+	width: 900px;
+	position: absolute;
+	top: 7300px;
+}
 
 /*button in page*/
 button{
@@ -69,6 +82,7 @@ button{
 	display:inline-block;
 	font-size: 16px;
 	margin: auto;
+	margin-bottom: 1500px;
 	cursor:pointer;
 	transition-duration: 0.4s;
 	width: 200px;
@@ -97,6 +111,7 @@ p {
 	vertical-align: middle;
 	z-index: -2;
 	box-shadow:  15px 5px 0 rgba(252, 154, 118,1);
+	margin-top: 0;
 
 }
 .width {
@@ -105,12 +120,10 @@ p {
 .width-8 {
 	width: 500px;
 }
-#how6 { 
-	font-size: 36px;
+#smaller {
+	font-size: 30px;
 }
-#how8 {
-	font-size: 35px;
-}
+
 
 
 .midtext {
@@ -118,12 +131,13 @@ p {
 	font-size: 35px;
 	color: #696969;
 	padding: 0px;
+	margin-top: 100px;
 	width: 100%;
 
 }
 
 .title {
-	font-size: 40px;
+	font-size: 35px;
 	color: #696969;
 	/*text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.4), 2px 2px 7px rgba(0, 0, 0, 0.3);*/
 }
@@ -131,6 +145,8 @@ p {
 .flex-container {
 	display: flex;
 	flex-direction: row;
+	justify-content: center;
+	align-items: center;
 }
 
 
@@ -139,23 +155,4 @@ img{
 	float: left;
 	z-index: -2;
 }
-
-/*#line1 {
-	border-left: 100px solid #ffc541;
-	height: 600px;
-	display: block;
-	position: absolute;
-	top: 1000px;
-	left: 355px;
-	z-index: -3;
-}
-#line2 {
-	border-left: 100px solid #ffc541;
-	height: 4500px;
-	display: block;
-	position: absolute;
-	top: 2000px;
-	left: 355px;
-	z-index: -3;
-}*/
 
